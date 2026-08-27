@@ -11,7 +11,7 @@ export const SITE = {
   marketingLabel: 'whatping.com',
   author: 'WhatPing Team',
   accent: '#22c55e',
-  tagline: 'Know the moment it's down.',
+  tagline: 'Know the moment it goes down.',
   locale: 'en',
 } as const;
 

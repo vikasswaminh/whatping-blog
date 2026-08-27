@@ -10,7 +10,7 @@ New to **WhatPing**? Here's the short version to get you going.
 
 ## Why WhatPing
 
-Know the moment it's down. That's the whole idea — and this blog is where we'll show you how to make the most of it.
+Know the moment it goes down. That's the whole idea — and this blog is where we'll show you how to make the most of it.
 
 ## Next steps
 
