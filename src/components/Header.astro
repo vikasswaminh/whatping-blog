@@ -1,25 +1,111 @@
 ---
-import { SITE, NAV } from '../config';
-const path = Astro.url.pathname;
-const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+import { SITE } from '../config';
+
+const currentPath = Astro.url.pathname;
 ---
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="/">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-name">{SITE.brand}</span>
-      <span class="brand-sub">Blog</span>
+<header class="blog-header">
+  <div class="blog-header-inner">
+    <a href="/" class="blog-brand">
+      <img src="/logo.png" alt="WhatPing Logo" class="blog-logo-img" />
     </a>
-    <nav class="nav" aria-label="Primary">
-      {
-        NAV.map((item) => (
-          <a href={item.href} class:list={['nav-link', { active: isActive(item.href) }]}>
-            {item.label}
-          </a>
-        ))
-      }
-      <a class="nav-cta" href={SITE.marketingUrl}>{SITE.marketingLabel} ↗</a>
+
+    <nav class="blog-nav">
+      <a href="/" class={`blog-nav-link ${currentPath === '/' || currentPath.startsWith('/blog') ? 'active' : ''}`}>Blog</a>
+      <a href="/tags/" class={`blog-nav-link ${currentPath.startsWith('/tags') ? 'active' : ''}`}>Tags</a>
+      <a href="/about/" class={`blog-nav-link ${currentPath.startsWith('/about') ? 'active' : ''}`}>About</a>
+      <a href="https://whatping.com" target="_blank" rel="noopener noreferrer" class="blog-nav-link blog-nav-link--theme">
+        whatping.com ↗
+      </a>
     </nav>
   </div>
 </header>
+
+<style>
+  .blog-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border, #ede8da);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .blog-header-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .blog-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .blog-logo-img {
+    height: 64px;
+    width: auto;
+    display: block;
+  }
+
+  .blog-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .blog-nav-link {
+    font-family: var(--font-sans, "Plus Jakarta Sans", system-ui, sans-serif);
+    font-size: 15px;
+    font-weight: 500;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .blog-nav-link:hover {
+    color: #0f172a;
+    text-decoration: none;
+  }
+
+  .blog-nav-link.active {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  .blog-nav-link--theme {
+    color: #0f172a;
+    background: #F9B900;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+  }
+
+  .blog-nav-link--theme:hover {
+    background: #FFBD00;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(249, 185, 0, 0.3);
+  }
+
+  @media (max-width: 640px) {
+    .blog-header-inner {
+      height: 64px;
+      padding: 0 16px;
+    }
+    .blog-logo-img {
+      height: 44px;
+    }
+    .blog-nav {
+      gap: 16px;
+    }
+    .blog-nav-link {
+      font-size: 14px;
+    }
+  }
+</style>

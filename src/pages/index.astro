@@ -1,47 +1,400 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
-import { SITE } from '../config';
 import { getPublishedPosts, readingTime } from '../utils/posts';
 
 const posts = await getPublishedPosts();
-const featured = posts[0];
-const rest = posts.slice(1);
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = a.data.pubDate ? new Date(a.data.pubDate).getTime() : 0;
+  const dateB = b.data.pubDate ? new Date(b.data.pubDate).getTime() : 0;
+  return dateB - dateA;
+});
+
+const featuredPost = sortedPosts[0];
+const gridPosts = sortedPosts.slice(1);
+
+// Filter sidebars by their respective special tags
+const leftSidebarPosts = sortedPosts.filter(post => post.data.tags?.includes('founder-special'));
+const rightSidebarPosts = sortedPosts.filter(post => post.data.tags?.includes('performance-special'));
 ---
 
-<BaseLayout>
-  <section class="hero">
-    <h1 class="hero-title">{SITE.brand} <span>Blog</span></h1>
-    <p class="hero-tagline">{SITE.description}</p>
-  </section>
+<BaseLayout title="Uptime Monitoring & Reliability Blog · WhatPing">
+  <div class="blog-main-container">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="blog-sidebar blog-sidebar--left">
+      <div class="sidebar-badge sidebar-badge--orange">FOUNDER'S PLAYBOOK</div>
+      <ul class="sidebar-list">
+        {leftSidebarPosts.map((post) => (
+          <li><a href={`/blog/${post.slug}/`}>{post.data.title}</a></li>
+        ))}
+      </ul>
+      <a href="/tags/founder-special/" class="sidebar-view-all sidebar-view-all--orange">View Playbook &rarr;</a>
+    </aside>
 
-  {posts.length === 0 && <p class="empty">No posts yet — check back soon.</p>}
+    <!-- CENTER FEED -->
+    <section class="blog-center-feed">
+      <div class="feed-header">
+        <h1>Uptime Monitoring & Reliability Blog</h1>
+        <p>Expert articles on server uptime, distributed systems, & performance monitoring</p>
+      </div>
 
-  {
-    featured && (
-      <a class="featured" href={`/blog/${featured.slug}/`}>
-        <span class="featured-label">Latest</span>
-        <h2 class="featured-title">{featured.data.title}</h2>
-        <p class="featured-desc">{featured.data.description}</p>
-        <span class="featured-more">Read article →</span>
-      </a>
-    )
-  }
+      <div class="feed-section-title">
+        <span class="badge badge--orange">🔥 NEWEST ARTICLES</span>
+        <span class="feed-section-subtitle">Latest from our experts</span>
+      </div>
 
-  {
-    rest.length > 0 && (
-      <div class="post-list">
-        {rest.map((p) => (
+      <!-- FEATURED POST -->
+      {featuredPost && (
+        <a href={`/blog/${featuredPost.slug}/`} class="featured-post-card">
+          <div class="featured-image">
+            <img src={featuredPost.data.heroImage || "/images/featured-hero.png"} alt={featuredPost.data.title} />
+          </div>
+          <div class="featured-content">
+            <div class="featured-meta-top">
+              <span class="cat-pill">{featuredPost.data.tags?.[0] || 'Monitoring'}</span>
+              <span class="new-pill">🔥 NEW</span>
+            </div>
+            <h2>{featuredPost.data.title}</h2>
+            <p class="clamp-3">{featuredPost.data.description}</p>
+            <div class="featured-meta-bottom">
+              {readingTime(featuredPost.body)} min read &bull; <span class="read-article">Read article &rarr;</span>
+            </div>
+          </div>
+        </a>
+      )}
+
+      <!-- GRID POSTS -->
+      <div class="blog-grid">
+        {gridPosts.map((post) => (
           <PostCard
-            url={`/blog/${p.slug}/`}
-            title={p.data.title}
-            description={p.data.description}
-            pubDate={p.data.pubDate}
-            tags={p.data.tags}
-            minutes={readingTime(p.body)}
+            url={`/blog/${post.slug}/`}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+            minutes={readingTime(post.body)}
           />
         ))}
       </div>
-    )
-  }
+    </section>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="blog-sidebar blog-sidebar--right">
+      <div class="sidebar-badge sidebar-badge--purple">PERFORMANCE SPECIAL</div>
+      <ul class="sidebar-list">
+        {rightSidebarPosts.map((post) => (
+          <li><a href={`/blog/${post.slug}/`}>{post.data.title}</a></li>
+        ))}
+      </ul>
+      <a href="/tags/performance-special/" class="sidebar-view-all sidebar-view-all--purple">View All Specials &rarr;</a>
+    </aside>
+
+  </div>
 </BaseLayout>
+
+<style>
+  .blog-main-container {
+    max-width: 1440px;
+    margin: 40px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 260px 1fr 260px;
+    gap: 40px;
+  }
+
+  /* Sidebars */
+  .blog-sidebar {
+    position: sticky;
+    top: 100px;
+    height: max-content;
+  }
+  .sidebar-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+  .sidebar-badge--orange { background: #F9B900; color: #0F172A; }
+  .sidebar-badge--purple { background: #8338EC; }
+
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sidebar-list li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: color 0.2s;
+    display: block;
+  }
+  .sidebar-list li a:hover {
+    color: var(--text-primary);
+  }
+
+  .sidebar-view-all {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .sidebar-view-all--orange { color: #D97706; }
+  .sidebar-view-all--purple { color: #8338EC; }
+
+  /* Center Feed */
+  .blog-center-feed {
+    display: flex;
+    flex-direction: column;
+  }
+  .feed-header {
+    margin-bottom: 40px;
+  }
+  .feed-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+  }
+  .feed-header p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .feed-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0F172A;
+  }
+  .badge--orange { background: #F9B900; }
+  .feed-section-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* Featured Post */
+  .featured-post-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #ffffff;
+    border: 2px solid #F9B900;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 32px;
+    transition: all 0.2s ease;
+  }
+  .featured-post-card:hover {
+    box-shadow: 4px 4px 0px 0px #F9B900;
+    transform: translateY(-2px);
+  }
+  .featured-image {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    position: relative;
+    background: #f5f5f5;
+  }
+  .featured-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .featured-post-card:hover .featured-image img {
+    transform: scale(1.03);
+  }
+  .featured-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .cat-pill {
+    display: inline-block;
+    width: fit-content;
+    background: #F9B900;
+    color: #0F172A;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .new-pill {
+    background: #F9B900;
+    color: #0F172A;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .featured-content h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    line-height: 1.25;
+    color: #171717;
+    transition: color 0.2s ease;
+  }
+  .featured-post-card:hover .featured-content h2 {
+    color: #F9B900;
+  }
+  .featured-content p {
+    font-size: 14px;
+    color: #525252;
+    margin: 0 0 16px 0;
+    line-height: 1.45;
+  }
+  .featured-meta-bottom {
+    font-size: 12px;
+    color: #737373;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .read-article {
+    color: #F9B900;
+    font-weight: 700;
+  }
+
+  /* Grid Posts */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .grid-card {
+    background: #ffffff;
+    border: 1.5px solid #FCD34D;
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-height: 205px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+  }
+  .grid-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.12);
+    border-color: #F59E0B;
+  }
+  .grid-card .cat-pill {
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+  .cat-pill--orange {
+    background: #E85D04;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .grid-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    line-height: 1.3;
+    color: #111827;
+    transition: color 0.2s ease;
+  }
+  .grid-card:hover h3 {
+    color: #E85D04;
+  }
+  .grid-card p {
+    font-size: 12.5px;
+    color: #4B5563;
+    margin: 0 0 10px 0;
+    line-height: 1.45;
+  }
+  .grid-meta {
+    font-size: 11.5px;
+    color: #9CA3AF;
+    font-weight: 500;
+  }
+
+  @media (max-width: 1100px) {
+    .blog-main-container {
+      grid-template-columns: 1fr;
+    }
+    .blog-sidebar {
+      position: static;
+      margin-bottom: 40px;
+    }
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .featured-post-card {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Utility classes */
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

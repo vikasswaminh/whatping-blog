@@ -1,17 +1,20 @@
 import { defineCollection, z } from 'astro:content';
 
-// The blog collection. Each post is a markdown file in src/content/blog/*.md
-// with the frontmatter below. See CONTRIBUTING.md for the authoring guide.
 const blog = defineCollection({
   type: 'content',
   schema: z.object({
+    route: z.string().optional(),
     title: z.string(),
     description: z.string(),
-    pubDate: z.coerce.date(),
+    h1: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
     updatedDate: z.coerce.date().optional(),
     author: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    keywords: z.array(z.string()).optional(),
     cover: z.string().optional(),
+    image: z.string().optional(),
+    heroImage: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
