@@ -437,6 +437,17 @@ const jsonLd = {
   .post-body :global(li) {
     margin-bottom: 10px;
   }
+  .post-body :global(a.theme-backlink) {
+    color: #D97706;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #F9B900;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
+  }
+  .post-body :global(a.theme-backlink:hover) {
+    color: #F9B900;
+  }
   .post-body :global(img) {
     max-width: 100%;
     height: auto;
@@ -611,6 +622,14 @@ const jsonLd = {
   .theme-purple .post-body :global(h2:hover) { color: #8338EC; }
   .theme-purple .post-body :global(h3:hover) { color: #8338EC; }
   
+  .theme-purple .post-body :global(a.theme-backlink) {
+    color: #7E22CE;
+    text-decoration-color: #8338EC;
+  }
+  .theme-purple .post-body :global(a.theme-backlink:hover) {
+    color: #8338EC;
+  }
+
   .theme-purple .post-body :global(blockquote) {
     border-left-color: #8338EC;
     background: #F3E8FF;
