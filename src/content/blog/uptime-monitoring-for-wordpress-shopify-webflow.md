@@ -57,7 +57,7 @@ The monitoring practices for each platform evolved along the same lines as the p
 
 ## 3. Definition
 
-Platform-specific uptime monitoring is the practice of configuring synthetic checks against the particular endpoints, content markers, and infrastructure dependencies that determine whether a site built on a specific CMS or e-commerce platform is actually functioning for a real visitor — as opposed to generic monitoring that checks only whether a URL returns any response at all.
+Platform-specific uptime monitoring is the practice of configuring synthetic checks against the particular endpoints, content markers, and infrastructure dependencies that determine whether a site built on a specific CMS or <a href="/blog/uptime-monitoring-for-ecommerce/" class="theme-backlink">e-commerce</a> platform is actually functioning for a real visitor — as opposed to generic monitoring that checks only whether a URL returns any response at all.
 
 This distinction matters because the three platforms covered here sit at different points on a spectrum of what you can directly observe:
 

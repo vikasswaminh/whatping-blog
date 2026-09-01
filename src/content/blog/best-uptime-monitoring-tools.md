@@ -137,7 +137,7 @@ To understand how a production monitor operates, trace the exact execution path 
 ### Step 1: Task Scheduling and Token Issuance
 The central scheduler identifies that Monitor M-102 (watching `https://api.example.com/health`) is due for execution. It issues a probe command containing the target parameters, request headers, status code assertions, timeout allowances (e.g., 5000ms), and a producer-generated unique check ID (UUIDv7).
 
-### Step 2: Probe Execution
+### Step 2: <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">Probe Execution</a>
 A stateless probe worker (typically written in high-performance languages like Rust or Go) receives the payload. The worker:
 1. Executes a DNS lookup, recording resolution timing.
 2. Opens a TCP socket to the destination IP address on port 443.
@@ -421,7 +421,7 @@ Common monitoring configuration issues and their resolutions:
 
 Beyond the primary tools detailed in this guide, small teams occasionally evaluate these specialized options:
 * **Checkly:** A developer-centric monitoring platform focused on API testing and headless browser E2E workflows using Playwright. Excellent for complex user interaction flows, though higher cost than standard uptime checks.
-* **OhDear:** A clean, hosted monitoring solution tailored for PHP and Laravel applications. Includes certificate checks, broken link scanning, and application health checks.
+* **OhDear:** A clean, <a href="/blog/hosted-vs-self-hosted-uptime-monitoring/" class="theme-backlink">hosted monitoring</a> solution tailored for PHP and Laravel applications. Includes certificate checks, broken link scanning, and application health checks.
 * **Datadog Synthetics:** An enterprise-grade synthetic monitoring suite embedded within the Datadog ecosystem. Offers powerful multi-step browser tests, but is cost-prohibitive for small teams.
 * **AWS CloudWatch Synthetics:** Cloud-native canary checks running Node.js or Python scripts inside AWS infrastructure. Best for teams deeply committed to AWS-only toolstacks.
 * **Grafana OnCall / Synthetic Monitoring:** Open-source and hosted synthetic monitoring integrated directly into Grafana dashboards. Ideal for teams already operating Grafana observability stacks.

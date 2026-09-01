@@ -292,7 +292,7 @@ Understanding the practical differences between 20-second, 1-minute, and 5-minut
 
 ### Primary Use Case Allocation
 * **20-Second Interval:** Payment gateways, checkout funnels, identity/OAuth providers, automated DNS failover triggers, financial trading platforms.
-* **1-Minute Interval:** SaaS application dashboards, customer-facing REST/GraphQL APIs, e-commerce storefronts, mobile app backends.
+* **1-Minute Interval:** SaaS application dashboards, customer-facing REST/GraphQL APIs, <a href="/blog/uptime-monitoring-for-ecommerce/" class="theme-backlink">e-commerce</a> storefronts, mobile app backends.
 * **5-Minute Interval:** Marketing landing pages, documentation sites, personal blogs, internal staging and QA environments.
 
 ---

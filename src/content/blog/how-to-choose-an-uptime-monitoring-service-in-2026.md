@@ -99,7 +99,7 @@ A high-availability monitoring service relies on a fully decoupled, multi-tier a
 * **Control Plane:** Exposes web user interfaces and programmatic API endpoints (REST with OpenAPI specification). Handles authentication, secret hashing, workspace RBAC, and monitor configuration management.
 * **Scheduler:** Manages timing intervals for active checks (e.g., every 20 seconds) and preventative daily tasks (e.g., WHOIS domain checks every 24 hours). Utilizes jitter to distribute <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">probe execution</a> evenly and prevent thundering-herd issues against target servers.
 * **Distributed Stateless Probe Workers:** Lightweight, stateless worker instances (typically built in Rust or Go) stationed in remote network environments. Probers hold no local state; they fetch task instructions, execute protocol requests, record raw telemetry (status code, latency, headers, error strings), and return payloads to the central decision engine.
-* **Decision Engine & State Machine:** Maintains the authoritative state for every monitored asset. It applies threshold evaluation, tracks consecutive failure counts, and triggers second-opinion verification probes from secondary networks before transitioning a monitor to a DOWN state.
+* **Decision Engine & <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">State Machine</a>:** Maintains the authoritative state for every monitored asset. It applies threshold evaluation, tracks consecutive failure counts, and triggers second-opinion verification probes from secondary networks before transitioning a monitor to a DOWN state.
 * **Alert Engine & Delivery Ledger:** Receives state-transition triggers from the decision engine. Formats messages for target alert channels and logs every delivery attempt (including destination HTTP status codes and error responses) in an immutable ledger. Crucially, failures in alert delivery cannot alter or roll back the committed status of a monitor.
 
 ---
@@ -411,7 +411,7 @@ Below is the definitive 10-point technical evaluation checklist for selecting an
 | # | Checklist Item | Description / Key Requirements |
 |---|---|---|
 | 1 | **Preventative Expiry & Drift Tracking** | Does the tool monitor WHOIS domain registration dates, TLS certificates, DNS records, and SPF/DMARC health alongside active uptime? |
-| 2 | **<a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">Check Frequency</a> & Polling Resolution** | Does the service offer 20-second to 60-second polling intervals without charging high tier upgrade fees? |
+| 2 | **<a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">Check Frequency</a> & Polling Resolution** | Does the service offer 20-second to 60-second <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">polling interval</a>s without charging high tier upgrade fees? |
 | 3 | **Multi-Network Second-Opinion Verification** | Does the system cross-verify check failures using an independent secondary network before issuing incident alerts? |
 | 4 | **Alert Engine Resilience & Delivery Ledger** | Is notification dispatching fully decoupled from monitor state calculations, and does it maintain an immutable delivery log? |
 | 5 | **Multi-Protocol & Passive Heartbeat Coverage** | Does it support HTTP, TCP, UDP, ICMP, gRPC health, SMTP/IMAP STARTTLS, and inbound cron heartbeats? |

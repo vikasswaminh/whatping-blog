@@ -55,7 +55,7 @@ Today, in 2026, uptime monitoring has advanced into multi-region, edge-computed 
 
 ## 3. Definition
 
-**Server Uptime Monitoring** is the automated process of continuously probing, measuring, evaluating, and recording the operational state, network reachability, protocol responsiveness, and service health of a physical or virtual machine over time. 
+**<a href="/blog/server-uptime-monitoring/" class="theme-backlink">Server Uptime Monitoring</a>** is the automated process of continuously probing, measuring, evaluating, and recording the operational state, network reachability, protocol responsiveness, and service health of a physical or virtual machine over time. 
 
 It represents the accumulated duration during which the server was inaccessible or failing health checks.
 
@@ -445,7 +445,7 @@ gcloud compute firewall-rules create allow-whatping-monitoring \
 **Q1: Why does my server respond to ICMP ping checks while my web application is returning 500 Internal Server Errors?**
 **Answer:** ICMP ping checks are processed entirely within kernel space by the operating system’s network stack. As long as the physical machine, hypervisor, and OS kernel remain active, the kernel will generate ICMP echo responses. Web application crashes (such as PHP fatal errors, Node.js uncaught exceptions, or Java OOM events) occur in user space. The operating system kernel remains healthy and continues answering pings. To detect application-level failures, you must implement Layer 7 HTTP synthetic checks using platforms like WhatPing.
 
-**Q2: What is the recommended check frequency for production server monitoring?**
+**Q2: What is the recommended <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">check frequency</a> for production server monitoring?**
 **Answer:** A check interval of 30 to 60 seconds offers the ideal balance between fast incident detection and low resource consumption. Checking faster than every 10 seconds increases network overhead and risks false alarms from transient packet loss. Secondary or non-production environments can safely use 5-minute polling intervals.
 
 **Q3: How can I monitor servers located behind Carrier-Grade NAT (CGNAT) or dynamic residential IP addresses?**
