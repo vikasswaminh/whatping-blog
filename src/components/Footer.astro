@@ -237,6 +237,13 @@ const year = new Date().getFullYear();
     .footer-links-grid {
       grid-template-columns: 1fr;
       gap: 32px;
+      text-align: center;
+    }
+    .footer-brand {
+      text-align: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
     }
     .footer-bottom {
       flex-direction: column;
@@ -246,6 +253,10 @@ const year = new Date().getFullYear();
     .footer-badges {
       flex-wrap: wrap;
       justify-content: center;
+      gap: 8px;
+    }
+    .footer-badges .divider {
+      display: none;
     }
     .trusted-logos {
       gap: 20px;
