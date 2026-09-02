@@ -58,7 +58,10 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
 
     <!-- SPECIAL COLLECTIONS SECTION -->
     <section class="specials-section">
-      <h2 class="section-heading">Featured Specials</h2>
+      <div class="section-header-row">
+        <h2 class="section-heading">Featured Specials</h2>
+        <button class="swipe-indicator" id="swipe-btn">Swipe &rarr;</button>
+      </div>
       <div class="specials-grid">
         
         <!-- FOUNDER'S PLAYBOOK -->
@@ -90,7 +93,7 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
 
         <!-- PERFORMANCE SPECIAL -->
         {tagMap.has('performance-special') && (
-          <div class="special-card special-card--purple">
+          <div class="special-card special-card--purple" id="performance-card">
             <div class="special-card-header">
               <span class="badge-pill badge-pill--purple">PERFORMANCE SPECIAL</span>
               <span class="count-pill">{tagMap.get('performance-special')?.length} Articles</span>
@@ -207,7 +210,8 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
 
   .tags-stats-bar {
     display: flex;
-    gap: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
   }
   .stat-item {
     display: flex;
@@ -231,14 +235,41 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
   }
 
   /* Section Headings */
+  .section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
   .section-heading {
     font-size: 20px;
     font-weight: 700;
-    margin: 0 0 20px 0;
+    margin: 0;
     color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+  .swipe-indicator {
+    display: none;
+    font-size: 11px;
+    font-weight: 800;
+    color: #0F172A;
+    background: #F9B900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .swipe-indicator:active {
+    background: #E5A900;
+    transform: scale(0.95);
   }
 
   /* Specials Section */
@@ -336,6 +367,7 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
   }
   .post-title-text {
     flex: 1;
+    min-width: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -448,8 +480,29 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
   }
 
   @media (max-width: 900px) {
+    .swipe-indicator {
+      display: inline-flex;
+    }
     .specials-grid {
-      grid-template-columns: 1fr;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 16px;
+      gap: 48px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      margin-left: -24px;
+      margin-right: -24px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .specials-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .special-card {
+      flex: 0 0 calc(100vw - 64px);
+      max-width: 380px;
+      scroll-snap-align: start;
     }
     .topics-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -459,6 +512,39 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
     .topics-grid {
       grid-template-columns: 1fr;
     }
+    .special-card {
+      padding: 20px;
+    }
+    .tags-container {
+      padding: 0 16px;
+    }
+    .specials-grid {
+      margin-left: -16px;
+      margin-right: -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+      gap: 32px;
+    }
+    .special-card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
   }
 </style>
+
+<script>
+  const swipeBtn = document.getElementById('swipe-btn');
+  const performanceCard = document.getElementById('performance-card');
+  const specialsGrid = document.querySelector('.specials-grid');
+  
+  if (swipeBtn && performanceCard && specialsGrid) {
+    swipeBtn.addEventListener('click', () => {
+      specialsGrid.scrollTo({
+        left: performanceCard.offsetLeft - 16,
+        behavior: 'smooth'
+      });
+    });
+  }
+</script>
 
