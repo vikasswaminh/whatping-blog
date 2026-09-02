@@ -493,8 +493,8 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
       scrollbar-width: none;
       margin-left: -24px;
       margin-right: -24px;
-      padding-left: 24px;
-      padding-right: 24px;
+      padding-left: 50px;
+      padding-right: 50px;
     }
     .specials-grid::-webkit-scrollbar {
       display: none;
@@ -502,7 +502,7 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
     .special-card {
       flex: 0 0 calc(100vw - 100px);
       max-width: 340px;
-      scroll-snap-align: start;
+      scroll-snap-align: center;
     }
     .topics-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -521,8 +521,8 @@ const topicTags = allTags.filter((t) => !specialTags.includes(t));
     .specials-grid {
       margin-left: -16px;
       margin-right: -16px;
-      padding-left: 60px;
-      padding-right: 16px;
+      padding-left: 50px;
+      padding-right: 50px;
       gap: 32px;
     }
     .special-card-header {
