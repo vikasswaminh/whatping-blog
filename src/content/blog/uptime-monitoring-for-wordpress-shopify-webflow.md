@@ -125,7 +125,7 @@ Across all three, the architecture that catches the most real incidents is the s
 
 **Step 4:** Add heartbeat monitoring for anything scheduled or asynchronous — WP-Cron tasks, form-to-webhook integrations, any process that doesn't have a page a browser check can directly validate.
 
-**Step 5:** Set an appropriate failure threshold and second-opinion configuration, since e-commerce and lead-generation sites are particularly sensitive to false-positive alerts during genuine traffic spikes or brief CDN cache misses, but also particularly costly when a real checkout failure goes unnoticed for an extended period.
+**Step 5:** Set an appropriate failure threshold and second-opinion configuration, since <a href="/blog/uptime-monitoring-for-ecommerce/" class="theme-backlink">e-commerce</a> and lead-generation sites are particularly sensitive to false-positive alerts during genuine traffic spikes or brief CDN cache misses, but also particularly costly when a real checkout failure goes unnoticed for an extended period.
 
 ---
 

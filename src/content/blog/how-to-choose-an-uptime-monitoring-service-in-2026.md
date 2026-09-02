@@ -108,7 +108,7 @@ A high-availability monitoring service relies on a fully decoupled, multi-tier a
 
 To understand how a monitoring service processes checks safely and accurately, trace the internal execution path of a check from scheduling to alert generation:
 
-### Step 1: Probe Execution and Payload Generation
+### Step 1: <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">Probe Execution</a> and Payload Generation
 The scheduler assigns a check to a stateless probe node. The probe executes a non-blocking TCP connect, TLS handshake, or HTTP GET request against the target endpoint. Upon completion, the probe packages the telemetry into a structured JSON observation containing a unique producer-generated UUID (UUIDv7):
 
 ```json
@@ -426,7 +426,7 @@ Below is the definitive 10-point technical evaluation checklist for selecting an
 | Feature / Criteria | WhatPing | UptimeRobot | Better Stack | Uptime Kuma |
 |---|---|---|---|---|
 | **Preventative Expiry & Drift** | Full (Domain WHOIS, TLS, DNS, SPF/DMARC) | Partial (TLS on paid plans; no Domain or SPF/DMARC) | Partial (TLS; no native Domain or SPF/DMARC) | Partial (TLS, basic DNS; no Domain or SPF/DMARC) |
-| **Check Frequency (Min)** | 20 seconds (Included in beta) | 5 minutes (Free) / 60 seconds (Paid) | 30 seconds (Paid) | Configurable (Host dependent) |
+| **<a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">Check Frequency</a> (Min)** | 20 seconds (Included in beta) | 5 minutes (Free) / 60 seconds (Paid) | 30 seconds (Paid) | Configurable (Host dependent) |
 | **Second-Opinion Network** | Yes (Independent secondary verification) | Partial (Multi-location retries on paid) | Yes (Multi-region checks) | No (Single host node by default) |
 | **Protocol Support Scope** | HTTP, TCP, ICMP, UDP, gRPC, Mail STARTTLS, Heartbeat | HTTP, TCP, ICMP, Heartbeat (Paid) | HTTP, TCP, ICMP, Heartbeat | HTTP, TCP, ICMP, DNS, gRPC, Push Heartbeat |
 | **Programmatic API & IaC** | REST API with OpenAPI 3.1, Bearer keys, Idempotency | REST API (Legacy v2) | REST API & Official Terraform Provider | Community Socket.io wrappers only |

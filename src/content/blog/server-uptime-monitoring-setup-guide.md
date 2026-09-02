@@ -70,7 +70,7 @@ Operational monitoring models fall into two core categories:
 
 ## 4. Architecture
 
-A resilient server uptime monitoring architecture consists of three structural layers: the Probing & Ingestion Layer, the State & Decision Engine, and the Notification & Visibility Layer.
+A resilient <a href="/blog/server-uptime-monitoring/" class="theme-backlink">server uptime monitoring</a> architecture consists of three structural layers: the Probing & Ingestion Layer, the State & Decision Engine, and the Notification & Visibility Layer.
 
 **The Probing Layer**
 The probing layer contains global edge nodes located across diverse Internet Service Providers (ISPs), autonomous systems (ASNs), and cloud availability zones. Operating external nodes ensures that local peering disputes or datacenter switch outages do not distort global uptime measurements. Probes issue checks across Layer 3 (ICMP), Layer 4 (TCP port checks for SSH, RDP, custom application ports), and Layer 7 (HTTP status codes, TLS handshake validation, header inspection).
@@ -446,7 +446,7 @@ gcloud compute firewall-rules create allow-whatping-monitoring \
 **Answer:** ICMP ping checks are processed entirely within kernel space by the operating system’s network stack. As long as the physical machine, hypervisor, and OS kernel remain active, the kernel will generate ICMP echo responses. Web application crashes (such as PHP fatal errors, Node.js uncaught exceptions, or Java OOM events) occur in user space. The operating system kernel remains healthy and continues answering pings. To detect application-level failures, you must implement Layer 7 HTTP synthetic checks using platforms like WhatPing.
 
 **Q2: What is the recommended <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">check frequency</a> for production server monitoring?**
-**Answer:** A check interval of 30 to 60 seconds offers the ideal balance between fast incident detection and low resource consumption. Checking faster than every 10 seconds increases network overhead and risks false alarms from transient packet loss. Secondary or non-production environments can safely use 5-minute polling intervals.
+**Answer:** A check interval of 30 to 60 seconds offers the ideal balance between fast incident detection and low resource consumption. Checking faster than every 10 seconds increases network overhead and risks false alarms from transient packet loss. Secondary or non-production environments can safely use 5-minute <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">polling interval</a>s.
 
 **Q3: How can I monitor servers located behind Carrier-Grade NAT (CGNAT) or dynamic residential IP addresses?**
 **Answer:** Servers lacking public static IP addresses cannot receive inbound synthetic probes from external monitoring nodes. For these hosts, use an Agent-Based Push Model. Deploy a lightweight background process or systemd timer on the target server that periodically sends an outbound HTTP request (a heartbeat or dead-man's switch check) to an external monitoring endpoint. If the monitoring platform misses a expected heartbeat within the configured window, it flags the server as DOWN.

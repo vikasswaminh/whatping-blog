@@ -507,7 +507,7 @@ Running synthetic uptime checks from outside your primary cloud provider ensures
 Uptime monitoring tests external accessibility, basic protocol responses, and infrastructure availability from outside your network. APM (e.g., Datadog, New Relic) runs code-level instrumentation agents inside your servers to measure database query execution, memory allocation, function call traces, and code performance.
 
 #### 2. Why shouldn't I self-host my uptime monitor on the same server as my app?
-If your server experiences a kernel panic, memory exhaustion, network outage, or hardware crash, your self-hosted monitoring application will crash alongside it. A dead monitor cannot send alerts. Always run monitoring tools on separate, isolated infrastructure or use a hosted provider.
+If your server experiences a kernel panic, memory exhaustion, network outage, or hardware crash, your <a href="/blog/hosted-vs-self-hosted-uptime-monitoring/" class="theme-backlink">self-hosted monitor</a>ing application will crash alongside it. A dead monitor cannot send alerts. Always run monitoring tools on separate, isolated infrastructure or use a hosted provider.
 
 #### 3. How does second-opinion network verification work?
 When an initial probe node detects a check failure, the backend delays issuing an alert and immediately requests a second check from a distinct, network-isolated probe node. An outage is confirmed only if both nodes report a failure, eliminating false positives caused by local network transit issues.
