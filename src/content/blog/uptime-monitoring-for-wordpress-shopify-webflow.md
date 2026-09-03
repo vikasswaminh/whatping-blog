@@ -5,6 +5,7 @@ description: "Platform-specific uptime monitoring for WordPress, Shopify, and We
 h1: "Uptime Monitoring for WordPress, Shopify, and Webflow: Platform-Specific Setup"
 tags: ["performance-special", "WordPress uptime monitoring setup", "Shopify checkout monitoring", "Webflow custom domain DNS monitoring", "platform-specific uptime monitoring", "WooCommerce checkout downtime", "monitor WordPress wp-cron heartbeat"]
 keywords: ["uptime monitoring for WordPress Shopify Webflow"]
+pubDate: 2026-08-31
 ---
 
 *Last updated: September 1, 2026*  

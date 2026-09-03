@@ -5,6 +5,7 @@ description: "Learn how SSL/TLS certificate monitoring works in 2026: expiry thr
 h1: "13 SSL Certificate Monitoring: How to Catch Expiry Before Users Do (2026)"
 tags: ["performance-special", "ssl certificate monitoring", "tls certificate", "expiry threshold", "acme renewal"]
 keywords: ["ssl certificate monitoring", "tls certificate", "expiry threshold", "acme renewal", "https outage"]
+pubDate: 2026-09-04
 ---
 
 *Last updated: September 3, 2026*  

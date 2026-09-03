@@ -5,6 +5,7 @@ description: "Basic ping and HTTP 200 checks miss TLS expiry, domain lapse, DNS 
 h1: "11 The Hidden Causes of Website Downtime That Basic Ping Tests Will Never Catch"
 tags: ["performance-special", "downtime causes", "uptime monitoring", "ping test", "website downtime", "tls expiry", "dns drift"]
 keywords: ["downtime causes", "uptime monitoring", "ping test", "website downtime", "tls expiry", "dns drift"]
+pubDate: 2026-09-01
 ---
 
 *Last updated: September 2, 2026*  

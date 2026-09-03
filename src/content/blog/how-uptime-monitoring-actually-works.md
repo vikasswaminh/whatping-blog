@@ -5,6 +5,7 @@ description: "Learn how modern uptime monitoring works under the hood: distribut
 h1: "How Uptime Monitoring Actually Works: Prober, Scheduler, Verdict Engine"
 tags: ["performance-special", "how uptime monitoring works", "synthetic monitoring architecture", "prober fleet", "verdict engine", "uptime scheduler"]
 keywords: ["how uptime monitoring works", "synthetic monitoring architecture", "prober fleet", "verdict engine", "uptime scheduler"]
+pubDate: 2026-08-24
 ---
 
 

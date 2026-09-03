@@ -5,6 +5,7 @@ description: "Step-by-step setup guide for server uptime monitoring across Linux
 h1: "Server Uptime Monitoring: Linux, Windows, and Cloud VM Setup Guide"
 tags: ["performance-special", "server uptime monitoring", "Linux uptime setup", "AWS EC2 monitoring", "Windows server monitoring", "systemd health check"]
 keywords: ["server uptime monitoring", "Linux uptime setup", "AWS EC2 monitoring", "Windows server monitoring", "systemd health check"]
+pubDate: 2026-08-24
 ---
 
 

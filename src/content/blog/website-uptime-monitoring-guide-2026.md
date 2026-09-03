@@ -5,6 +5,7 @@ description: "Learn website uptime monitoring for 2026: assertion checks, TLS, D
 h1: "Website Uptime Monitoring: The Definitive Technical Guide for 2026"
 tags: ["founder-special", "website uptime monitoring"]
 keywords: ["website uptime monitoring", "website uptime monitoring guide"]
+pubDate: 2026-09-01
 ---
 
 *Last updated: September 2, 2026*  
