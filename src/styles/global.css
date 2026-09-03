@@ -519,10 +519,10 @@ a.btn--secondary,
 .prose table {
   border-collapse: collapse;
   font-size: var(--size-small);
-  width: max-content;
+  width: 100%;
   min-width: min(100%, 40rem);
   max-width: min(100%, 52rem);
-  display: block;
+  display: table;
   overflow-x: auto;
 }
 

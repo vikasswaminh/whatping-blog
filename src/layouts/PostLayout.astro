@@ -119,6 +119,17 @@ const jsonLd = {
         }
       });
 
+      
+      // Wrap all tables for responsiveness
+      const tables = document.querySelectorAll('.post-body table');
+      tables.forEach(table => {
+        if (!table.parentElement.classList.contains('table-responsive-wrapper')) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-responsive-wrapper';
+          table.parentNode.insertBefore(wrapper, table);
+          wrapper.appendChild(table);
+        }
+      });
       if (headings.length === 0 || tocLinks.length === 0) return;
 
       const tocList = document.querySelector('.toc-list') as HTMLElement;
@@ -477,20 +488,25 @@ const jsonLd = {
   }
 
   /* BRAND TABLE FORMATTING & OUTSIDE BORDER */
-  .post-body :global(table) {
+  .post-body :global(.table-responsive-wrapper) {
     width: 100%;
-    display: block;
     overflow-x: auto;
-    border-collapse: separate;
-    border-spacing: 0;
     margin: 36px 0;
     border: 2px solid #F9B900;
     border-radius: 12px;
     background: #ffffff;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    -webkit-overflow-scrolling: touch;
+  }
+  .post-body :global(table) {
+    width: 100%;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0;
+    border: none;
     font-size: 14.5px;
     line-height: 1.5;
-    -webkit-overflow-scrolling: touch;
   }
   .post-body :global(thead) {
     background: #FFF6D8;
@@ -635,10 +651,12 @@ const jsonLd = {
     background: #F3E8FF;
   }
   
-  .theme-purple .post-body :global(table) { border-color: #8338EC; }
+  .theme-purple .post-body :global(.table-responsive-wrapper) { border-color: #8338EC; }
+  .theme-purple .post-body :global(table) { border-color: transparent; }
   .theme-purple .post-body :global(thead),
   .theme-purple .post-body :global(th) { background: #F3E8FF; }
   .theme-purple .post-body :global(th) { border-bottom-color: #8338EC; }
+  .theme-purple .post-body :global(tbody tr:hover) { background-color: #FAF5FF; }
   
   .theme-purple .post-body :global(.related-guides-box) {
     background: linear-gradient(135deg, #F3E8FF 0%, #FFFFFF 100%);
