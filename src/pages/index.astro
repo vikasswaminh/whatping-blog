@@ -46,7 +46,7 @@ const rightSidebarPosts = sortedPosts.filter(post => post.data.tags?.includes('p
 
       <!-- FEATURED POST -->
       {featuredPost && (
-        <a href={`/blog/${featuredPost.slug}/`} class="featured-post-card">
+        <a href={`/blog/${featuredPost.slug}/`} class:list={["featured-post-card", { "featured-post-card--purple": featuredPost.data.tags?.includes('performance-special') }]}>
           <div class="featured-image">
             <img src={featuredPost.data.heroImage || "/images/featured-hero.png"} alt={featuredPost.data.title} />
           </div>
@@ -293,6 +293,23 @@ const rightSidebarPosts = sortedPosts.filter(post => post.data.tags?.includes('p
   .read-article {
     color: #F9B900;
     font-weight: 700;
+  }
+
+  /* Featured Post - Purple Theme Override */
+  .featured-post-card--purple {
+    border-color: #8338EC;
+  }
+  .featured-post-card--purple:hover {
+    box-shadow: 4px 4px 0px 0px #8338EC;
+  }
+  .featured-post-card--purple .cat-pill,
+  .featured-post-card--purple .new-pill {
+    background: #8338EC;
+    color: #ffffff;
+  }
+  .featured-post-card--purple:hover .featured-content h2,
+  .featured-post-card--purple .read-article {
+    color: #8338EC;
   }
 
   /* Grid Posts */
