@@ -48,7 +48,7 @@ const rightSidebarPosts = sortedPosts.filter(post => post.data.tags?.includes('p
       {featuredPost && (
         <a href={`/blog/${featuredPost.slug}/`} class:list={["featured-post-card", { "featured-post-card--purple": featuredPost.data.tags?.includes('performance-special') }]}>
           <div class="featured-image">
-            <img src={featuredPost.data.heroImage || "/images/featured-hero.png"} alt={featuredPost.data.title} />
+            <img src={featuredPost.data.heroImage || "/images/featured-hero.png"} alt={featuredPost.data.title} width="600" height="315" decoding="async" loading="eager" />
           </div>
           <div class="featured-content">
             <div class="featured-meta-top">

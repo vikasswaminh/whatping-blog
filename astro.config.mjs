@@ -7,6 +7,7 @@ import { SITE } from './src/config';
 export default defineConfig({
   site: SITE.url,
   trailingSlash: 'ignore',
+  prefetch: true,
   integrations: [sitemap()],
   markdown: {
     shikiConfig: { theme: 'github-dark', wrap: true },
