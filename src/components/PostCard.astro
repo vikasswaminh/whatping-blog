@@ -12,7 +12,8 @@ const { url, title, description, tags = [], minutes = 5 } = Astro.props;
 // Determine primary tag to display
 let displayTag = "SETUP GUIDE";
 if (tags.length > 0) {
-  displayTag = tags.find(t => t === 'founder-special' || t === 'performance-special') || tags[0];
+  const rawTag = tags.find(t => t === 'founder-special' || t === 'performance-special') || tags[0];
+  displayTag = rawTag === 'founder-special' ? "Founder's Playbook" : rawTag;
 }
 
 // Determine card theme

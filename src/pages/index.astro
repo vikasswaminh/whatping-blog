@@ -52,7 +52,7 @@ const rightSidebarPosts = sortedPosts.filter(post => post.data.tags?.includes('p
           </div>
           <div class="featured-content">
             <div class="featured-meta-top">
-              <span class="cat-pill">{featuredPost.data.tags?.[0] || 'Monitoring'}</span>
+              <span class="cat-pill">{featuredPost.data.tags?.[0] === 'founder-special' ? "Founder's Playbook" : featuredPost.data.tags?.[0] || 'Monitoring'}</span>
               <span class="new-pill">🔥 NEW</span>
             </div>
             <h2>{featuredPost.data.title}</h2>

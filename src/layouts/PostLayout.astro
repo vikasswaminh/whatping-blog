@@ -17,7 +17,8 @@ const updatedObj = updatedDate ? new Date(updatedDate) : dateObj;
 const minutes = readingTime(post.body);
 const canonical = new URL(`/blog/${post.slug}/`, Astro.site).href;
 
-const mainTag = tags.length > 0 ? tags[0] : 'Monitoring';
+const firstTag = tags.length > 0 ? tags[0] : 'Monitoring';
+const mainTag = firstTag === 'founder-special' ? "Founder's Playbook" : firstTag;
 const isPerformance = tags.includes('performance-special');
 
 // Filter headings for TOC (only main H2 headings, excluding Table of Contents and Related Guides)
