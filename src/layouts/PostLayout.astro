@@ -486,6 +486,17 @@ const jsonLd = {
     font-style: italic;
     color: #0F172A;
   }
+  
+  .post-body :global(.callout) {
+    background: #FFF6D8;
+    border: 1px solid #FDE68A;
+    border-left: 4px solid #F9B900;
+    color: #0F172A;
+    margin: 32px 0;
+  }
+  .post-body :global(.callout__label) {
+    color: #B45309;
+  }
 
   /* BRAND TABLE FORMATTING & OUTSIDE BORDER */
   .post-body :global(.table-responsive-wrapper) {
@@ -649,6 +660,15 @@ const jsonLd = {
   .theme-purple .post-body :global(blockquote) {
     border-left-color: #8338EC;
     background: #F3E8FF;
+  }
+  
+  .theme-purple .post-body :global(.callout) {
+    background: #F3E8FF;
+    border-color: #DDD6FE;
+    border-left-color: #8338EC;
+  }
+  .theme-purple .post-body :global(.callout__label) {
+    color: #7E22CE;
   }
   
   .theme-purple .post-body :global(.table-responsive-wrapper) { border-color: #8338EC; }
