@@ -8,6 +8,7 @@ export default defineConfig({
   site: SITE.url,
   trailingSlash: 'ignore',
   prefetch: true,
+  compressHTML: true,
   integrations: [sitemap()],
   markdown: {
     shikiConfig: { theme: 'github-dark', wrap: true },

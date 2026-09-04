@@ -14,15 +14,17 @@ interface Props {
     modifiedTime?: string;
     author?: string;
     tags?: string[];
+    keywords?: string[];
   };
+  noindex?: boolean;
 }
-const { title = SITE.title, description, image, article } = Astro.props;
+const { title = SITE.title, description, image, article, noindex } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={SITE.locale}>
   <head>
-    <BaseHead title={title} description={description} image={image} article={article} />
+    <BaseHead title={title} description={description} image={image} article={article} noindex={noindex} />
   </head>
   <body class="theme-homepage">
     <a class="skip" href="#main">Skip to content</a>

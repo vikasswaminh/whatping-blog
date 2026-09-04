@@ -10,10 +10,12 @@ interface Props {
     modifiedTime?: string;
     author?: string;
     tags?: string[];
+    keywords?: string[];
   };
+  noindex?: boolean;
 }
 
-const { title, description = SITE.description, image, article } = Astro.props;
+const { title, description = SITE.description, image, article, noindex } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
 const fullTitle = title === SITE.title || title.includes(SITE.brand) ? title : `${title} · ${SITE.brand} Blog`;
@@ -21,6 +23,7 @@ const fullTitle = title === SITE.title || title.includes(SITE.brand) ? title : `
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="canonical" href={canonical} />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,6 +34,9 @@ const fullTitle = title === SITE.title || title.includes(SITE.brand) ? title : `
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
+{article?.keywords && article.keywords.length > 0 && (
+  <meta name="keywords" content={article.keywords.join(', ')} />
+)}
 
 <meta property="og:type" content={article ? 'article' : 'website'} />
 <meta property="og:title" content={fullTitle} />

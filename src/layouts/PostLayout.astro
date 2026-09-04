@@ -11,7 +11,7 @@ interface Props {
   headings?: MarkdownHeading[];
 }
 const { post, headings = [] } = Astro.props;
-const { title, description, pubDate = new Date(), updatedDate, author = 'WhatPing Team', tags = [], cover } = post.data;
+const { title, description, pubDate = new Date(), updatedDate, author = 'WhatPing Team', tags = [], keywords = [], cover } = post.data;
 const dateObj = pubDate ? new Date(pubDate) : new Date();
 const updatedObj = updatedDate ? new Date(updatedDate) : dateObj;
 const minutes = readingTime(post.body);
@@ -47,6 +47,7 @@ const jsonLd = {
     modifiedTime: updatedObj.toISOString(),
     author,
     tags,
+    keywords,
   }}
 >
   <main class:list={["blog-post-container", { "theme-purple": isPerformance }]}>
@@ -125,10 +126,13 @@ const jsonLd = {
       const tables = document.querySelectorAll('.post-body table');
       tables.forEach(table => {
         if (!table.parentElement.classList.contains('table-responsive-wrapper')) {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'table-responsive-wrapper';
-          table.parentNode.insertBefore(wrapper, table);
-          wrapper.appendChild(table);
+          const outer = document.createElement('div');
+          outer.className = 'table-container-outer';
+          const inner = document.createElement('div');
+          inner.className = 'table-responsive-wrapper';
+          table.parentNode.insertBefore(outer, table);
+          outer.appendChild(inner);
+          inner.appendChild(table);
         }
       });
       if (headings.length === 0 || tocLinks.length === 0) return;
@@ -500,14 +504,17 @@ const jsonLd = {
   }
 
   /* BRAND TABLE FORMATTING & OUTSIDE BORDER */
-  .post-body :global(.table-responsive-wrapper) {
-    width: 100%;
-    overflow-x: auto;
+  .post-body :global(.table-container-outer) {
     margin: 36px 0;
     border: 2px solid #F9B900;
     border-radius: 12px;
     background: #ffffff;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+  }
+  .post-body :global(.table-responsive-wrapper) {
+    width: 100%;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
   .post-body :global(table) {
@@ -672,7 +679,7 @@ const jsonLd = {
     color: #7E22CE;
   }
   
-  .theme-purple .post-body :global(.table-responsive-wrapper) { border-color: #8338EC; }
+  .theme-purple .post-body :global(.table-container-outer) { border-color: #8338EC; }
   .theme-purple .post-body :global(table) { border-color: transparent; }
   .theme-purple .post-body :global(thead),
   .theme-purple .post-body :global(th) { background: #F3E8FF; }

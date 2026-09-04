@@ -7,7 +7,7 @@ const currentPath = Astro.url.pathname;
 <header class="blog-header">
   <div class="blog-header-inner">
     <a href="/" class="blog-brand">
-      <img src="/logo.png" alt="WhatPing Logo" class="blog-logo-img" />
+      <img src="/logo.png" alt="WhatPing Logo" class="blog-logo-img" width="180" height="64" fetchpriority="high" decoding="async" />
     </a>
 
     <button id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
@@ -67,7 +67,7 @@ const currentPath = Astro.url.pathname;
     border: none;
     cursor: pointer;
     color: #0f172a;
-    padding: 8px;
+    padding: 10px;
   }
 
   .blog-nav {
@@ -147,6 +147,8 @@ const currentPath = Astro.url.pathname;
     .blog-nav-link {
       font-size: 15px;
       text-align: right;
+      padding: 8px 12px;
+      display: block;
     }
     .blog-nav-link--theme {
       font-size: 14px;
