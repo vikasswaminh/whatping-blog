@@ -210,7 +210,7 @@ To configure your monitoring service efficiently and prevent alert fatigue, appl
 * **Failure Threshold:** Require 2 consecutive failures or secondary network confirmation before opening an incident.
 
 ### Preventative Expiry Monitors
-* **TLS Certificate Expiry:** Check daily; trigger warning alerts at 30 days remaining.
+* **TLS <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate Expiry</a>:** Check daily; trigger warning alerts at 30 days remaining.
 * **Domain Registration Expiry:** Check daily directly via RDAP/WHOIS; trigger warning alerts at 60 days and 30 days remaining.
 * **DNS Record Assertions:** Check daily; define explicit expected values for A, AAAA, MX, and TXT records.
 * **SPF/DMARC Health:** Check daily; verify valid record syntax and publish policies.
@@ -313,7 +313,7 @@ except ValueError as err:
 
 When evaluating an uptime monitoring vendor, assess these key performance metrics:
 
-1. **Probe Execution Latency & Overhead:** A monitoring probe must execute non-blocking network requests. For TCP port checks, the worker should initiate a TCP three-way handshake (`SYN`, `SYN-ACK`, `ACK`) and close the connection cleanly (`FIN` or `RST`). This process completes in kernel space, consuming zero user-space application memory or CPU on your target server.
+1. **<a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">Probe Execution</a> Latency & Overhead:** A monitoring probe must execute non-blocking network requests. For TCP port checks, the worker should initiate a TCP three-way handshake (`SYN`, `SYN-ACK`, `ACK`) and close the connection cleanly (`FIN` or `RST`). This process completes in kernel space, consuming zero user-space application memory or CPU on your target server.
 2. **Jitter and Probe Distribution:** To prevent monitoring probes from creating artificial traffic spikes ("thundering herds") against your application servers, high-quality schedulers introduce randomized micro-jitter (e.g., ±2 seconds) across probe schedules.
 3. **Latency Metric Breakdown:** The monitoring service should separate total response time into distinct, actionable latency metrics:
    * **DNS Resolution Time:** Identifies local resolver or authoritative DNS delays.
@@ -496,7 +496,7 @@ SSRF is a vulnerability where an attacker configures an outbound monitoring serv
 ### 7. How does a delivery ledger improve monitoring reliability?
 A delivery ledger logs every notification dispatch attempt independently of monitor state processing. If an alert destination (such as a Slack webhook or email server) returns an error, the failure is recorded in the audit log without crashing or corrupting the monitor's underlying status.
 
-### 8. What is the recommended check frequency for production web applications?
+### 8. What is the recommended <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">check frequency</a> for production web applications?
 Production APIs, payment gateways, and login portals should be monitored every 20 to 60 seconds. Internal tools, staging environments, and daily background jobs can be monitored at lower frequencies (5 minutes to daily checks).
 
 ### 9. Why should I monitor SPF and DMARC records with an uptime tool?

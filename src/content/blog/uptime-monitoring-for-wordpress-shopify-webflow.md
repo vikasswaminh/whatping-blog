@@ -15,7 +15,7 @@ pubDate: 2026-08-31
 
 ## Executive Summary
 
-This guide walks through what to monitor on each platform, why the generic "check if the homepage returns 200" approach fails on all three for different reasons, and how to configure real checks — DNS assertions, certificate expiry tracking, keyword-based page validation, and heartbeat monitoring for scheduled tasks — that catch the failures specific to WordPress, Shopify, and Webflow before a customer does.
+This guide walks through what to monitor on each platform, why the generic "check if the homepage returns 200" approach fails on all three for different reasons, and how to configure real checks — DNS assertions, <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a> tracking, keyword-based page validation, and heartbeat monitoring for scheduled tasks — that catch the failures specific to WordPress, Shopify, and Webflow before a customer does.
 
 ---
 
@@ -261,7 +261,7 @@ An empty result despite a 200 response confirms the page loaded but the expected
 * **Platform-native monitoring features** — Jetpack's uptime monitoring for WordPress, Shopify's built-in notification settings, Webflow's publish-status indicators. Best for a first line of basic awareness, but generally limited to simple uptime signals without keyword assertions, DNS monitoring, or checkout-specific checks.
 * **CMS-specific management platforms** — tools like ManageWP or InfiniteWP for multi-site WordPress management, which bundle basic monitoring with backups, updates, and security scanning. Best for agencies managing many WordPress installations who want monitoring bundled with broader site management.
 * **General-purpose external synthetic monitoring** — WhatPing, UptimeRobot, Better Stack, applied with platform-specific configuration as described throughout this guide. Best for teams wanting a single monitoring tool across mixed-platform portfolios — an agency managing WordPress, Shopify, and Webflow clients simultaneously doesn't need three separate platform-native tools.
-* **E-commerce-specific monitoring apps** — third-party Shopify App Store tools built specifically around checkout and conversion-funnel monitoring. Best for larger Shopify merchants where checkout monitoring depth matters more than covering other platforms from the same tool.
+* **<a href="/blog/uptime-monitoring-for-ecommerce/" class="theme-backlink">E-commerce</a>-specific monitoring apps** — third-party Shopify App Store tools built specifically around checkout and conversion-funnel monitoring. Best for larger Shopify merchants where checkout monitoring depth matters more than covering other platforms from the same tool.
 
 ---
 

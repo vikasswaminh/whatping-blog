@@ -383,7 +383,7 @@ Diagnose and resolve common server uptime monitoring failures using the followin
 * **Isolate Probing with Firewalls:** Whitelist specific monitoring probe IP ranges in `nftables` or Windows Firewall instead of opening administrative ports to the public internet.
 * **Implement Systemd Timers for Linux Heartbeats:** Use native systemd timers with lightweight cURL heartbeats to monitor cron jobs, backups, and background tasks.
 * **Track Windows Event Logs:** Monitor Windows Server lifecycle states using Event IDs 1074 (clean shutdown), 6008 (dirty shutdown), and 6005/6006 (Event Log state).
-* **Configure 30-Day Certificate Expiry Alerts:** Set alert thresholds for server TLS certificates to 30 days remaining to allow ample time to fix automated renewal failures.
+* **Configure 30-Day <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate Expiry</a> Alerts:** Set alert thresholds for server TLS certificates to 30 days remaining to allow ample time to fix automated renewal failures.
 * **Configure 60-Day Domain Expiry Alerts:** Track domain WHOIS expiration dates directly from registries to prevent domain drops.
 * **Use Multi-Channel Alerts:** Route server outage alerts to at least two independent channels (e.g., Webhook to Slack/Discord + Telegram/Email).
 * **Automate Monitoring with IaC:** Manage monitoring definitions alongside server code using REST APIs or Terraform providers.

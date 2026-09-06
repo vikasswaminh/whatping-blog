@@ -112,7 +112,7 @@ External probes initiate protocol requests:
 
 #### 2. Preventative integrity checks
 Low-frequency monitors that catch failures before users feel them:
-* TLS certificate expiry and chain trust
+* TLS <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a> and chain trust
 * Domain registration expiry via RDAP/WHOIS
 * DNS record assertions (A, AAAA, CNAME, MX, NS, TXT)
 * SPF and DMARC authenticity and unexpected change detection
@@ -161,7 +161,7 @@ Workers execute protocol checks and return observations only:
 They should not decide “down,” open incidents, or send pages.
 
 **Layer 4 — Verdict and state engine**
-This layer owns the state machine, typically:
+This layer owns the <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">state machine</a>, typically:
 UP → PENDING → DOWN → UP
 
 It enforces consecutive-failure thresholds, optional second-opinion confirmation, incident open/close semantics, and recovery rules. One outage equals one incident.
@@ -507,7 +507,7 @@ Website teams often paste staging URLs, internal preview hosts, or admin paths i
 ## 14. Common Mistakes
 
 * **Homepage-only coverage — app/API outages remain invisible:** Teams often monitor `/` and assume the product is safe. In practice, marketing pages can survive while login, checkout, or API calls fail. Customers experience downtime; your dashboard stays green.
-* **Status code worship — soft 200 failures slip through:** Many CMS platforms, reverse proxies, and custom error handlers return HTTP 200 with failure content. If you only accept “any 2xx,” you will miss soft outages that block real usage.
+* **Status code worship — soft 200 failures slip through:** Many <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">CMS</a> platforms, reverse proxies, and custom error handlers return HTTP 200 with failure content. If you only accept “any 2xx,” you will miss soft outages that block real usage.
 * **No preventative monitors — predictable expiry events become emergencies:** Certificate and domain expiry are calendar failures, not surprises. Without daily TLS/domain checks, you discover the problem when browsers already reject the site or DNS disappears.
 * **Same-network monitoring — site and monitor share fate:** Running your only monitor on the same VPS, cluster, or cloud account as the website means a shared outage takes down detection and the target together. External isolation is the point of uptime monitoring.
 * **Alerting to one inbox — spam filtering becomes a single point of failure:** If all alerts go to one email address, deliverability issues, mailbox rules, or an overloaded inbox can hide incidents. One channel is a single point of failure for response, not just notification preference.
@@ -659,7 +659,7 @@ Assertion-based checks on homepage and primary API/auth, TLS expiry, domain expi
 * How to <a href="/blog/how-to-choose-an-uptime-monitoring-service-in-2026/" class="theme-backlink">Choose an Uptime Monitoring Service</a> (2026)
 * <a href="/blog/hosted-vs-self-hosted-uptime-monitoring/" class="theme-backlink">Hosted vs Self-Hosted</a> Uptime Monitoring
 * Uptime Monitoring <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">Check Frequency</a>: 20s vs 1m vs 5m
-* 7 Best Uptime Monitoring Tools for Startups (2026)
+* 7 <a href="/blog/best-uptime-monitoring-tools/" class="theme-backlink">Best Uptime Monitoring Tools</a> for Startups (2026)
 
 ---
 

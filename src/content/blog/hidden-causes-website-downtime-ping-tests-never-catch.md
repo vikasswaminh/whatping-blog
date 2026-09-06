@@ -28,7 +28,7 @@ If you only remember one line: **liveness is not integrity, and integrity is not
 
 *   **Ping proves reachability, not usability.** ICMP success says nothing about TLS validity, DNS correctness, application content, or background jobs.
 *   **HTTP 200 is not a health contract.** Error pages, maintenance shells, and broken API payloads can still return success codes.
-*   **The worst outages are slow.** Certificate expiry, domain lapse, DNS drift, and email-auth corruption accumulate quietly for days or weeks.
+*   **The worst outages are slow.** <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate expiry</a>, domain lapse, DNS drift, and email-auth corruption accumulate quietly for days or weeks.
 *   **Private work fails silently.** Backups, billing workers, and queue consumers often have no public endpoint for classic probes.
 *   **Alert channels can fail independently.** Broken SPF/DMARC can suppress the very emails that should wake you up.
 *   **Preventative monitors beat reactive pings.** Daily certificate, domain, DNS, and email-auth checks close the gaps ping cannot see.
@@ -80,7 +80,7 @@ Then the stack changed:
 *   Multi-subdomain architectures split “site up” from “API up.”
 *   CDNs and WAFs inserted layers that could serve friendly error pages with 200/403/503 semantics that confuse shallow checks.
 *   SaaS products made email a core UX path (magic links, receipts, invites).
-*   Background workers and queues became revenue-critical without exposing HTTP.
+*   Background workers and queues became <a href="/blog/uptime-monitoring-for-ecommerce/" class="theme-backlink">revenue-critical</a> without exposing HTTP.
 *   Domain and DNS changes became frequent enough that drift, not crash, caused many incidents.
 
 By 2026, the industry still sells “uptime” with ping-shaped metaphors, while production risk has moved into expiry, drift, assertion failure, and silent async stoppage. Tools that only ping are historically understandable—and operationally insufficient.
@@ -112,7 +112,7 @@ To catch hidden downtime, monitoring architecture must separate fast liveness fr
 ### How the system is organized
 Everything starts at the control plane (config and API), where monitors, thresholds, and alert channels are defined. From there, work splits into three lanes:
 
-*   **Fast probe lane (every 20 seconds to 5 minutes):** Runs active liveness checks: HTTP/TCP/ICMP/UDP/gRPC/mail. This lane answers “is it reachable and responding right now?”
+*   **Fast probe lane (every 20 seconds to 5 minutes):** Runs <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">active liveness</a> checks: HTTP/TCP/ICMP/UDP/gRPC/mail. This lane answers “is it reachable and responding right now?”
 *   **Scheduled lane (daily):** Runs slow integrity and continuity checks: TLS expiry, domain RDAP/WHOIS expiry, DNS drift, and SPF/DMARC health. This lane answers “will it still be trustworthy tomorrow?”
 *   **Passive lane (heartbeat):** Waits for inbound success signals from cron jobs, workers, backups, and CI. This lane answers “did private work finish on schedule?”
 
@@ -411,7 +411,7 @@ These mistakes create false confidence: dashboards stay green while customers al
 *   **No heartbeat on backups and billing.** Private jobs do not expose a public port to ping. If they hang or crash, classic uptime checks see nothing until finance or compliance notices.
 *   **Alerting only by email on the same domain you might break.** If that domain’s mail auth or DNS fails, the outage and the pager fail together. Correlated alert paths create silent incidents.
 *   **Tuning only for faster pings.** Checking every 10 seconds instead of every 5 minutes does not create foresight for certificate expiry, domain lapse, DNS drift, or cron absence. Frequency cannot replace preventative monitors.
-*   **Treating uptime tools as APM replacements.** Hidden-downtime monitoring catches external availability and continuity failures. It does not replace logs, metrics, and traces for deep application diagnosis. Use both.
+*   **Treating <a href="/blog/best-uptime-monitoring-tools/" class="theme-backlink">uptime tools</a> as APM replacements.** Hidden-downtime monitoring catches external availability and continuity failures. It does not replace logs, metrics, and traces for deep application diagnosis. Use both.
 
 ## 15. Alternatives
 

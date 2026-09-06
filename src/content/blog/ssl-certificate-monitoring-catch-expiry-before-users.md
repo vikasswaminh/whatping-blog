@@ -20,7 +20,7 @@ An expired TLS certificate is one of the most embarrassing outages in production
 
 SSL certificate monitoring means continuously reading the live certificate a hostname presents, tracking days remaining until expiry, and alerting early enough that renewal is routine work—not an incident. In 2026, that usually means a scheduled check (often daily) against port 443, a warning threshold matched to your renewal process (14 / 30 / 45–90 days), and alerts that fire when the certificate is already invalid or when remaining lifetime drops below your threshold.
 
-This guide is an operations playbook for catching certificate expiry before users do: how certificate monitors work, which thresholds fit ACME vs manual renewals, how to design alerts people trust, what certificate monitors do not catch (chain gaps, revocation, hostname mismatch), and how to wire certificate checks into a broader reliability stack with HTTP, domain expiry, DNS, and mail-path monitoring.
+This guide is an operations playbook for catching <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a> before users do: how certificate monitors work, which thresholds fit ACME vs manual renewals, how to design alerts people trust, what certificate monitors do not catch (chain gaps, revocation, hostname mismatch), and how to wire certificate checks into a broader reliability stack with HTTP, domain expiry, DNS, and mail-path monitoring.
 
 <div class="callout callout--note">
   <span class="callout__label">WhatPing note (honest)</span>
@@ -36,7 +36,7 @@ This guide is an operations playbook for catching certificate expiry before user
 - **Alert early, page late.** Treat “30 days remaining” as a ticket; treat “invalid / expired” as an incident.
 - **ACME can fail silently.** DNS challenges, WAF rules, rate limits, and stuck renewers are common root causes.
 - **Certificate monitors have blind spots.** Chain completeness, revocation, and hostname match often need companion checks.
-- **Cover every public hostname.** Apex, www, API, admin, CDN custom domains, and any host customers can reach.
+- **Cover every public hostname.** Apex, www, API, admin, CDN <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s, and any host customers can reach.
 - **WhatPing’s default (30-day warn, daily check)** is a practical middle for teams that want expiry caught before users.
 
 

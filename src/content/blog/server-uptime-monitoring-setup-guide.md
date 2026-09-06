@@ -109,7 +109,7 @@ To determine if a daemon (such as SSH on port 22 or HTTPS on port 443) is active
 
 ## 6. Components
 
-A complete server uptime monitoring infrastructure depends on eight core components working in unison:
+A complete <a href="/blog/server-uptime-monitoring/" class="theme-backlink">server uptime monitoring</a> infrastructure depends on eight core components working in unison:
 
 *   **Monitored Target Nodes:** The physical bare-metal servers, virtual machines, container hosts, or edge appliances running Linux or Windows operating systems.
 *   **External Synthetic Probes:** Distributed edge nodes (such as WhatPing’s global probing network) that issue external ICMP, TCP, and HTTP checks against target endpoints.
