@@ -524,7 +524,7 @@ On Google Cloud Platform (GCP) and Microsoft Azure, configure external load bala
 ## 19. FAQs
 
 #### 1. What is the difference between server uptime monitoring and website uptime monitoring?
-Website uptime monitoring tests Layer 7 HTTP/HTTPS web application responses, status codes, and HTML body contents. Server uptime monitoring tests lower-level infrastructure health—Layer 3 network ICMP reachability, Layer 4 TCP/UDP socket availability (SSH, RDP, DB ports), OS service states, and passive task heartbeats.
+[Website uptime monitoring](/blog/website-uptime-monitoring-guide-2026/) tests Layer 7 HTTP/HTTPS web application responses, status codes, and HTML body contents. Server uptime monitoring tests lower-level infrastructure health—Layer 3 network ICMP reachability, Layer 4 TCP/UDP socket availability (SSH, RDP, DB ports), OS service states, and passive task heartbeats.
 
 #### 2. Why does my server answer ICMP ping when the application is completely down?
 ICMP Echo processing executes directly within the operating system kernel IP stack. If an application (e.g., NGINX, MySQL, IIS) crashes or freezes, the OS kernel remains active and continues responding to ping requests. Always combine ICMP ping monitoring with TCP port or application checks.
@@ -590,3 +590,4 @@ By configuring targeted, multi-layered monitoring checks, whitelisting probe acc
   </a>
 </div>
 
+ This highlights the importance of having a robust [how uptime monitoring works](/blog/how-uptime-monitoring-actually-works/) strategy.

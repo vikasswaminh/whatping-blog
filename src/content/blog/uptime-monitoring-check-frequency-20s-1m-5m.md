@@ -228,7 +228,7 @@ When troubleshooting uptime monitoring behavior across different frequencies, ad
   * *Cause:* The web server returns an HTTP 200 status code, but the Single Page Application (SPA) bundle failed to compile or returned a blank screen with a JavaScript runtime error.
   * *Solution:* Move beyond basic status code checks. Add body content assertions in WhatPing (e.g., ensuring a specific HTML tag or string like `id="app-root"` is present in the response).
 * **SSL Expiration Alerts Flapping:**
-  * *Cause:* Multiple edge CDN servers presenting mixed certificates during automated Let's Encrypt renewals.
+  * *Cause:* Multiple edge CDN servers presenting mixed certificates during automated <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> renewals.
   * *Solution:* Ensure the monitoring system uses modern SNI (Server Name Indication) handshakes and allows a 24-hour grace window on renewal propagation.
 
 ---
@@ -380,3 +380,4 @@ By utilizing WhatPing's global multi-region probe network and consensus verifica
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
   </a>
 </div>
+ This highlights the importance of having a robust [website uptime monitoring](/blog/website-uptime-monitoring-guide-2026/) strategy. This highlights the importance of having a robust [multi-region uptime monitoring](/blog/multi-region-uptime-monitoring-location-impacts-reliability/) strategy.

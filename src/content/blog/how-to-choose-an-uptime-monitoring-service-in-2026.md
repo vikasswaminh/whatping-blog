@@ -314,7 +314,7 @@ except ValueError as err:
 When evaluating an uptime monitoring vendor, assess these key performance metrics:
 
 1. **<a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">Probe Execution</a> Latency & Overhead:** A monitoring probe must execute non-blocking network requests. For TCP port checks, the worker should initiate a TCP three-way handshake (`SYN`, `SYN-ACK`, `ACK`) and close the connection cleanly (`FIN` or `RST`). This process completes in kernel space, consuming zero user-space application memory or CPU on your target server.
-2. **Jitter and Probe Distribution:** To prevent monitoring probes from creating artificial traffic spikes ("thundering herds") against your application servers, high-quality schedulers introduce randomized micro-jitter (e.g., ±2 seconds) across probe schedules.
+2. **Jitter and Probe Distribution:** To prevent monitoring probes from creating artificial traffic spikes ("thundering herds") against your application servers, high-quality <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">schedulers</a> introduce randomized micro-jitter (e.g., ±2 seconds) across probe schedules.
 3. **Latency Metric Breakdown:** The monitoring service should separate total response time into distinct, actionable latency metrics:
    * **DNS Resolution Time:** Identifies local resolver or authoritative DNS delays.
    * **TCP Connection Time:** Measures network transport congestion and firewall queue times.
@@ -542,3 +542,4 @@ When evaluating vendors, use our 10-point checklist:
   </a>
 </div>
 
+ This highlights the importance of having a robust [hosted vs self-hosted uptime monitoring](/blog/hosted-vs-self-hosted-uptime-monitoring/) strategy. This highlights the importance of having a robust [website uptime monitoring](/blog/website-uptime-monitoring-guide-2026/) strategy. This highlights the importance of having a robust [multi-region uptime monitoring](/blog/multi-region-uptime-monitoring-location-impacts-reliability/) strategy.

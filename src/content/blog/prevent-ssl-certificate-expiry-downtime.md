@@ -10,7 +10,7 @@ pubDate: 2026-09-04
 
 *Last updated: September 4, 2026*  
 *Author: WhatPing Engineering Team*  
-*Versions referenced: WhatPing Beta, Let's Encrypt / ACME (RFC 8555), TLS 1.2–1.3 (RFC 8446), X.509 / PKIX practice, Certbot 2.x, Uptime Kuma v1.23.x defaults*
+*Versions referenced: WhatPing Beta, <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> / ACME (RFC 8555), TLS 1.2–1.3 (RFC 8446), X.509 / PKIX practice, Certbot 2.x, Uptime Kuma v1.23.x defaults*
 
 ---
 
@@ -23,7 +23,7 @@ This guide is a prevention playbook, not a monitoring explainer. It assumes you 
 
 <div class="callout callout--note">
   <span class="callout__label">WhatPing note (honest)</span>
-  WhatPing includes a dedicated certificate monitor that reads the live TLS certificate for a bare hostname on port 443 once a day by default, records issuer / expiry / days remaining, and fails when the cert is invalid or days remaining fall below your <code>cert_warn_days</code> threshold (default 30). It does not check OCSP/CRL revocation, full chain completeness, or non-443 ports. Pair it with an HTTP monitor when you need handshake/chain failures to surface as liveness incidents. Start at https://monitor.whatping.com/.
+  WhatPing includes a dedicated [SSL certificate monitoring](/blog/ssl-certificate-monitoring-catch-expiry-before-users/) that reads the live TLS certificate for a bare hostname on port 443 once a day by default, records issuer / expiry / days remaining, and fails when the cert is invalid or days remaining fall below your <code>cert_warn_days</code> threshold (default 30). It does not check OCSP/CRL revocation, full chain completeness, or non-443 ports. Pair it with an HTTP monitor when you need handshake/chain failures to surface as liveness incidents. Start at https://monitor.whatping.com/.
 </div>
 
 ## Key Takeaways
@@ -255,7 +255,7 @@ echo | openssl s_client -servername api.example.com \
 
 - Certificate checks are cheap. You can monitor every public hostname daily without meaningful cost.
 - Renewal is the bottleneck, not the check. The risk is silent automation failure, not check volume.
-- Cover every hostname. Apex, www, API, admin, CDN custom domains, and any host customers can reach.
+- Cover every hostname. Apex, www, API, admin, CDN <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s, and any host customers can reach.
 
 ## Security & Edge Egress Controls
 

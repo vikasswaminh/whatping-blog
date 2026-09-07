@@ -15,7 +15,7 @@ pubDate: 2026-08-31
 
 ## Executive Summary
 
-This guide walks through what to monitor on each platform, why the generic "check if the homepage returns 200" approach fails on all three for different reasons, and how to configure real checks — DNS assertions, <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a> tracking, keyword-based page validation, and heartbeat monitoring for scheduled tasks — that catch the failures specific to WordPress, Shopify, and Webflow before a customer does.
+This guide walks through what to monitor on each platform, why the generic "check if the homepage returns 200" approach fails on all three for different reasons, and how to configure real checks — DNS assertions, <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a> tracking, keyword-based page validation, and heartbeat monitoring for scheduled tasks — that catch the failures specific to WordPress, Shopify, and Webflow before a customer does. This highlights the importance of having a robust [website uptime monitoring](/blog/website-uptime-monitoring-guide-2026/) strategy. For evaluating solutions, check out our comparison of [uptime monitoring tools](/blog/best-uptime-monitoring-tools/).
 
 ---
 
@@ -99,7 +99,7 @@ Across all three, the architecture that catches the most real incidents is the s
 * The database connection — surfaced indirectly through the `/wp-json/` health check, since a broken database connection typically breaks the REST API bootstrap.
 * WP-Cron execution — via a heartbeat monitor pinged by a real cron job or a scheduled task, not by relying on WordPress's own visitor-triggered pseudo-cron.
 * Individual critical pages — checkout or contact-form pages for a WooCommerce site, not just the homepage, since plugin conflicts are often page-specific.
-* SSL certificate — particularly relevant for self-managed certificates rather than ones auto-renewed by a host like a Let's Encrypt integration.
+* SSL certificate — particularly relevant for self-managed certificates rather than ones auto-renewed by a host like a <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> integration.
 
 **Shopify-specific components to monitor:**
 * The custom domain's DNS records — the CNAME or A record pointing to Shopify's infrastructure, which is the most common point of merchant-side failure.
@@ -278,12 +278,12 @@ An empty result despite a 200 response confirms the page loaded but the expected
 **Model B: General-Purpose External Synthetic Monitoring, Platform-Configured.**
 
 * **Setup complexity:** moderate — requires understanding each platform's specific failure points, as covered throughout this guide, rather than a single toggle.
-* **Coverage depth:** deep, when configured correctly — DNS assertions, certificate expiry tracking, keyword-based transactional-page checks, and heartbeat monitoring for scheduled or asynchronous processes.
+* **Coverage depth:** deep, when configured correctly — DNS assertions, <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a> tracking, keyword-based transactional-page checks, and heartbeat monitoring for scheduled or asynchronous processes.
 * **Cross-platform consistency:** high — one dashboard, one alerting configuration, and one API across every site regardless of which platform it runs on, which matters significantly for agencies or teams managing a mixed portfolio.
 * **Cost:** typically a monitoring-specific subscription or usage fee, separate from any platform costs.
 * **Best fit:** any team managing more than a handful of sites, anyone needing checkout- or form-specific monitoring depth that platform-native tools don't offer, and specifically any agency managing sites across more than one of these three platforms.
 
-The deciding factor for most readers of this guide is portfolio composition: a single WordPress blog with no e-commerce functionality may genuinely be well served by Jetpack's basic monitoring, while anyone running transactional flows — WooCommerce checkout, Shopify checkout, a Webflow lead-generation form — needs the deeper, platform-configured external monitoring Model B describes, regardless of which specific platform they're on.
+The deciding factor for most readers of this guide is portfolio composition: a single WordPress blog with no <a href="/blog/uptime-monitoring-for-ecommerce/" class="theme-backlink">e-commerce</a> functionality may genuinely be well served by Jetpack's basic monitoring, while anyone running transactional flows — WooCommerce checkout, Shopify checkout, a Webflow lead-generation form — needs the deeper, platform-configured external monitoring Model B describes, regardless of which specific platform they're on.
 
 ---
 

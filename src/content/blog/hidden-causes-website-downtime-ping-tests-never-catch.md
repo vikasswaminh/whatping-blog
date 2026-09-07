@@ -119,7 +119,7 @@ Everything starts at the control plane (config and API), where monitors, thresho
 ### What happens after checks run
 1.  Results from the fast and scheduled lanes flow into an observation bus.
 2.  Heartbeat expectations are evaluated by a deadline evaluator (missing check-ins count as failure).
-3.  Observations enter a state machine with thresholds (UP → PENDING → DOWN) so a single blip does not become an incident.
+3.  Observations enter a <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">state machine</a> with thresholds (UP → PENDING → DOWN) so a single blip does not become an incident.
 4.  Suspected failures go through second-opinion verification from an independent path.
 5.  Only after confirmation does the system commit an incident as the source of truth.
 6.  Alerts are then sent through an alert ledger (email, webhook, Telegram, ntfy), with delivery success/failure tracked separately from monitor state.
@@ -150,7 +150,7 @@ Walk through how a silent failure becomes visible—or stays invisible.
 2.  Reads leaf certificate timestamps and chain trust.
 3.  Computes `days_remaining = notAfter - now`.
 4.  If `days_remaining <= 30`, opens a warning incident while HTTP still works.
-5.  Team fixes ACME renewal before customers feel pain.
+5.  Team fixes <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">ACME renewal</a> before customers feel pain.
 
 **Path 3: DNS drift with a false-healthy ping**
 1.  A record for `pay.example.com` accidentally points to a staging IP.
@@ -410,7 +410,7 @@ These mistakes create false confidence: dashboards stay green while customers al
 *   **Assuming mail “just works.”** SPF/DMARC breakage is downtime for invite, reset, and receipt flows. It can also suppress the alert emails you rely on during incidents.
 *   **No heartbeat on backups and billing.** Private jobs do not expose a public port to ping. If they hang or crash, classic uptime checks see nothing until finance or compliance notices.
 *   **Alerting only by email on the same domain you might break.** If that domain’s mail auth or DNS fails, the outage and the pager fail together. Correlated alert paths create silent incidents.
-*   **Tuning only for faster pings.** Checking every 10 seconds instead of every 5 minutes does not create foresight for certificate expiry, domain lapse, DNS drift, or cron absence. Frequency cannot replace preventative monitors.
+*   **Tuning only for faster pings.** Checking every 10 seconds instead of every 5 minutes does not create foresight for <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a>, domain lapse, DNS drift, or cron absence. Frequency cannot replace preventative monitors.
 *   **Treating <a href="/blog/best-uptime-monitoring-tools/" class="theme-backlink">uptime tools</a> as APM replacements.** Hidden-downtime monitoring catches external availability and continuity failures. It does not replace logs, metrics, and traces for deep application diagnosis. Use both.
 
 ## 15. Alternatives
@@ -565,3 +565,4 @@ Start with one critical hostname’s certificate, your apex domain expiry, one a
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
   </a>
 </div>
+ This highlights the importance of having a robust [website uptime monitoring](/blog/website-uptime-monitoring-guide-2026/) strategy. This highlights the importance of having a robust [multi-region uptime monitoring](/blog/multi-region-uptime-monitoring-location-impacts-reliability/) strategy.

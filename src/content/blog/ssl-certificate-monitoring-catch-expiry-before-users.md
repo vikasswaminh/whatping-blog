@@ -29,7 +29,7 @@ This guide is an operations playbook for catching <a href="/blog/prevent-ssl-cer
 
 ## Key Takeaways
 
-- **Certificate expiry is a calendar failure, not a crash.** The outage date is knowable weeks or months ahead.
+- **<a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate expiry</a> is a calendar failure, not a crash.** The outage date is knowable weeks or months ahead.
 - **HTTP 200 does not prove TLS health.** You need an explicit certificate or handshake assertion.
 - **Thresholds must match renewal reality.** ACME automation, manual ops, and purchased certs need different warning windows.
 - **Daily cadence is usually enough.** Certificates do not meaningfully change every minute.
@@ -107,14 +107,14 @@ SSL certificate monitoring (more precisely, TLS certificate expiry monitoring) i
 | **TLS handshake monitoring** | Can clients complete TLS now? | Calendar warning |
 | **Certificate transparency monitoring** | Unexpected certs in CT logs | Expiry countdown |
 | **Domain expiry monitoring** | Registry registration end date | TLS leaf end date |
-| **ACME renewal monitoring** | Did the renewer succeed? | Reading the presented cert |
+| **<a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">ACME renewal</a> monitoring** | Did the renewer succeed? | Reading the presented cert |
 
 ## 4. Architecture
 
 A practical SSL certificate monitoring architecture has five layers.
 
 **4.1 Inventory layer**
-Monitor every hostname that can break independently: apex and www, API and auth hosts, admin dashboards, docs/status microsites with custom domains, partner webhook receivers, and CDN custom domains. Prefer live discovery from load balancers, ingress TLS secrets, and CDN APIs over a wiki page that rots.
+Monitor every hostname that can break independently: apex and www, API and auth hosts, admin dashboards, docs/status microsites with <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s, partner webhook receivers, and CDN custom domains. Prefer live discovery from load balancers, ingress TLS secrets, and CDN APIs over a wiki page that rots.
 
 **4.2 Scheduler layer**
 Separate concerns:

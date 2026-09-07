@@ -16,6 +16,7 @@ const links = [
   { slug: 'hosted-vs-self-hosted-uptime-monitoring', title: 'Hosted vs Self-Hosted Uptime Monitoring', regex: /(hosted vs self-hosted|self-hosted uptime monitoring|hosted monitoring|self-hosted monitor)/ig },
   { slug: 'uptime-monitoring-for-wordpress-shopify-webflow', title: 'Uptime Monitoring for WordPress, Shopify & Webflow', regex: /(wordpress|shopify|webflow|platform-specific monitoring|custom domain|cms)/ig },
   { slug: 'prevent-ssl-certificate-expiry-downtime', title: 'Prevent SSL Certificate Expiry Downtime', regex: /(ssl certificate expiry|prevent ssl|certificate expiry|ssl expiry downtime)/ig },
+  { slug: 'monitor-ssl-certificate-renewal-lets-encrypt', title: 'Monitor SSL Certificate Renewal Let\'s Encrypt', regex: /(let's encrypt|acme renewal|certificate renewal cycle|acme challenge)/ig },
 ];
 
 for (const file of files) {
