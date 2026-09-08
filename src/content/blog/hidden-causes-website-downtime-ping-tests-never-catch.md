@@ -517,7 +517,7 @@ Because ping only tests network reachability to an address. Most customer-facing
 No. HTTP is richer, but “HTTP status = 200” without assertions still misses soft failures, and HTTP alone still misses certificate foresight, domain expiry, DNS drift, SPF/DMARC damage, and cron stoppage.
 
 **3. How early should TLS expiry alerts fire?**
-A 30-day warning is a practical default for most teams. It leaves time to fix ACME challenges, WAF rules, and DNS validation issues before certificates become a hard outage.
+A 30-day warning is a practical default for most teams. It leaves time to fix <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">ACME challenge</a>s, WAF rules, and DNS validation issues before certificates become a hard outage.
 
 **4. What is the difference between DNS monitoring and domain expiry monitoring?**
 DNS monitoring checks whether records resolve to expected values. Domain expiry monitoring queries registry data (RDAP/WHOIS) to determine whether the registration itself will lapse—even if DNS currently looks fine.

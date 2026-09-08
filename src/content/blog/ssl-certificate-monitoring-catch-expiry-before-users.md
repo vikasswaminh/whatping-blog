@@ -89,7 +89,7 @@ WhatPing’s certificate monitor sits in that model as a scheduled expiry check:
 
 ## 3. Definition
 
-SSL certificate monitoring (more precisely, TLS certificate expiry monitoring) is continuous observation of the X.509 certificate a service presents during a TLS handshake, to detect:
+SSL certificate monitoring (more precisely, TLS <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a> monitoring) is continuous observation of the X.509 certificate a service presents during a TLS handshake, to detect:
 - Imminent expiry — days remaining below a warning threshold
 - Current invalidity — certificate not valid at check time
 - Operational metadata — issuer, expiry timestamp, and remaining lifetime
@@ -114,7 +114,7 @@ SSL certificate monitoring (more precisely, TLS certificate expiry monitoring) i
 A practical SSL certificate monitoring architecture has five layers.
 
 **4.1 Inventory layer**
-Monitor every hostname that can break independently: apex and www, API and auth hosts, admin dashboards, docs/status microsites with <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s, partner webhook receivers, and CDN custom domains. Prefer live discovery from load balancers, ingress TLS secrets, and CDN APIs over a wiki page that rots.
+Monitor every hostname that can break independently: apex and www, API and auth hosts, admin dashboards, docs/status microsites with <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s, partner webhook receivers, and CDN <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s. Prefer live discovery from load balancers, ingress TLS secrets, and CDN APIs over a wiki page that rots.
 
 **4.2 Scheduler layer**
 Separate concerns:
@@ -269,7 +269,7 @@ For each critical hostname: certificate monitor + HTTP monitor; optionally renew
 
 Monitor detail:
 ```text
-Let's Encrypt R3 · expires Sep 20 16:23:22 2026 GMT · 12 days remaining
+<a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> R3 · expires Sep 20 16:23:22 2026 GMT · 12 days remaining
 ```
 
 ## 9. Examples

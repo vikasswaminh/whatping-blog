@@ -364,7 +364,7 @@ Answer: A successful-looking submission in the browser only confirms Webflow acc
 **Q4: Should I monitor every product page on a large Shopify catalog?**  
 Answer: Generally no. Monitoring a representative sample — your highest-traffic or highest-revenue products, plus the cart and checkout flow — catches the vast majority of real incidents without generating check volume large enough to risk triggering the platform's own automated traffic-shaping measures.
 
-**Q5: What's the right check interval for an e-commerce checkout flow?**  
+**Q5: What's the right check interval for an <a href="/blog/uptime-monitoring-for-ecommerce/" class="theme-backlink">e-commerce</a> checkout flow?**  
 Answer: 60 seconds is a reasonable default for a checkout-critical monitor, balanced against most platforms' rate-limiting tolerance. Faster intervals increase detection speed marginally but raise the risk of the check itself being flagged as abusive automated traffic on shared hosting or heavily protected checkout endpoints.
 
 **Q6: Can I monitor WordPress admin login availability without exposing credentials to a monitoring tool?**  
