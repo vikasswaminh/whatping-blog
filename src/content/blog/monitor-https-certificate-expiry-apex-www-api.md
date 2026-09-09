@@ -10,17 +10,17 @@ pubDate: 2026-09-08
 
 *Last Updated: September 8, 2026*  
 *Author: WhatPing Reliability Engineering Team*  
-*Standards & Specs Referenced: RFC 8446 (TLS 1.3), RFC 6066 (Server Name Indication), RFC 6125 (X.509 Domain Verification), RFC 5280 (PKIX Certificate Profile), RFC 8555 (ACME), RFC 9110 (HTTP Semantics)*
+*Standards & Specs Referenced: RFC 8446 (TLS 1.3), RFC 6066 (Server Name Indication), RFC 6125 (X.509 Domain Verification), RFC 5280 (PKIX Certificate Profile), RFC 8555 (ACME), RFC 9110 (HTTP Semantics)* For a deeper dive into this topic, refer to our [server uptime monitoring setup guide](/blog/server-uptime-monitoring-setup-guide/).
 
 ---
 
 ## Executive Summary
 
-Modern web architectures are fundamentally distributed. Even the most modest digital product rarely terminates all inbound traffic on a single monolithic web server. Instead, modern production infrastructure separates traffic by fully qualified domain name (FQDN): the naked apex domain (example.com) frequently handles marketing redirects or CDN root flattening; the www hostname (www.example.com) routes to a Jamstack frontend, edge cache, or headless web application; and the API hostname (api.example.com) terminates at a cloud application load balancer, Kubernetes ingress controller, or microservices gateway.
+Modern web architectures are fundamentally distributed. Even the most modest digital product rarely terminates all inbound traffic on a single monolithic web server. Instead, modern production infrastructure separates traffic by fully qualified domain name (FQDN): the naked apex domain (example.com) frequently handles marketing redirects or CDN root flattening; the www hostname (www.example.com) routes to a Jamstack frontend, edge cache, or headless web application; and the API hostname (api.example.com) terminates at a cloud application load balancer, Kubernetes ingress controller, or microservices gateway. This highlights the importance of having a robust [SSL certificate monitoring](/blog/ssl-certificate-monitoring-catch-expiry-before-users/) strategy.
 
 Because these hostnames serve a unified brand experience, engineering teams frequently make the catastrophic assumption that their Transport Layer Security (TLS) certificates share a unified operational lifecycle. In practice, they almost never do.
 
-The apex domain might terminate on Cloudflare or AWS Route 53 ALIAS records using an automated edge certificate issued by Google Trust Services. The www frontend may terminate on Vercel or Netlify using an automated Let’s Encrypt certificate renewed via HTTP-01 challenges. Meanwhile, the api hostname may terminate inside an Amazon EKS cluster where an automated cert-manager instance handles DNS-01 renewals against AWS Route 53, or on a legacy internal load balancer running a manually procured commercial certificate valid for 398 days.
+The apex domain might terminate on Cloudflare or AWS Route 53 ALIAS records using an automated edge certificate issued by Google Trust Services. The www frontend may terminate on Vercel or Netlify using an automated Let’s Encrypt certificate renewed via HTTP-01 challenges. Meanwhile, the api hostname may terminate inside an Amazon EKS cluster where an automated cert-manager instance handles DNS-01 renewals against AWS Route 53, or on a legacy internal load balancer running a manually procured commercial certificate valid for 398 days. This highlights the importance of having a robust [multi-region uptime monitoring](/blog/multi-region-uptime-monitoring-location-impacts-reliability/) strategy. For evaluating solutions, check out our guide on how to [choose an uptime monitoring service](/blog/how-to-choose-an-uptime-monitoring-service-in-2026/).
 
 When a team only checks their main website, they fall victim to the Multi-Hostname Blind Spot. A developer visits https://example.com or https://www.example.com, sees a secure padlock in the browser URL bar, and assumes SSL health across the entire portfolio. Twenty-four hours later, the certificate on api.example.com expires.
 
