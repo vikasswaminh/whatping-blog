@@ -58,7 +58,7 @@ Under this setup, there is no single "SSL certificate." There are at least three
 
 ## Historical Evolution: From Single-Host SSL to Distributed Cloud Architectures
 
-Understanding why modern certificate monitoring requires an FQDN-specific approach requires a brief look at how the web moved from dedicated single-IP servers to multi-tenant, distributed cloud systems.
+Understanding why modern <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing requires an FQDN-specific approach requires a brief look at how the web moved from dedicated single-IP servers to multi-tenant, distributed cloud systems.
 
 Era 1: Dedicated IP per Certificate (1995–2003)
 In the early days of SSL (SSL 2.0 and 3.0), the TLS handshake took place before the HTTP request was transmitted. Because the web server did not know which hostname the client was requesting until after the TLS session was established, every SSL certificate required its own dedicated public IPv4 address.
@@ -236,7 +236,7 @@ server {
     return 444;
 }
 
-# 2. Apex (example.com): ACME challenge + redirect to www
+# 2. Apex (example.com): <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">ACME challenge</a> + redirect to www
 server {
     listen 80;
     server_name example.com;

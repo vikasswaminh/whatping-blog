@@ -221,7 +221,7 @@ Use this sequence to eliminate ping-blind spots without boiling the ocean.
 
 Baselines that close hidden-downtime gaps. Tune to your risk tolerance.
 
-### TLS / SSL certificate monitors
+### TLS / SSL <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>s
 
 
 | Setting | Recommended baseline | Why |
@@ -552,7 +552,7 @@ Basic ping tests are not useless. They are incomplete. They excel at telling you
 
 The fix is not “ping harder.” The fix is to monitor the failure classes that ping cannot see: trust through TLS lifecycle checks, continuity through domain registration monitoring, integrity through DNS and email-auth record checks, correctness through asserted application responses, and absence through heartbeat deadlines for async work. That combination is the operational core of modern uptime practice—and the product direction behind WhatPing’s mix of fast probes, scheduled preventative checks, and heartbeat monitors.
 
-Start with one critical hostname’s certificate, your apex domain expiry, one asserted API health check, and one backup heartbeat. Add DNS and SPF/DMARC next. Diversify alerts. Run a drill. Your ping chart might look almost the same. Your real outage rate will not.
+Start with one critical hostname’s certificate, your <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">apex domain</a> expiry, one asserted API health check, and one backup heartbeat. Add DNS and SPF/DMARC next. Diversify alerts. Run a drill. Your ping chart might look almost the same. Your real outage rate will not.
 
 <div class="related-guides-box">
   <div class="related-guides-header">

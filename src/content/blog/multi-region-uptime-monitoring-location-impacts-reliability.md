@@ -483,7 +483,7 @@ Add a new probe location in observe-only mode before it can page. Compare its fa
 Every notification should carry failing region(s), succeeding region(s), resolved IP/hostname, error class, and timestamp. Without that context, engineers debug blind and often declare a global outage for a local path dispute. Put the same fields in webhooks so automation can route by scope.
 
 **Pair geographic synthetics with integrity monitors (TLS, domain, DNS, SPF/DMARC)**
-Multi-region probes answer “where is it reachable?” They do not answer “will the certificate still be valid next week?” or “did DNS drift after the migration?” Run scheduled integrity monitors alongside geographic checks. Geography without integrity still misses the quiet failures that take everyone down at once.
+Multi-region probes answer “where is it reachable?” They do not answer “will the certificate still be valid next week?” or “did <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">DNS drift</a> after the migration?” Run scheduled integrity monitors alongside geographic checks. Geography without integrity still misses the quiet failures that take everyone down at once.
 
 **Revisit region set quarterly as traffic shifts**
 Launches, seasonal markets, and enterprise deals change where failures hurt. Review probe coverage against traffic and revenue each quarter; add, remove, or reweight regions deliberately. A static region list from last year’s expansion plan becomes false confidence.

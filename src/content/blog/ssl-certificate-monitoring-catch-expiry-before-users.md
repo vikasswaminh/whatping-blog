@@ -386,7 +386,7 @@ For 24h certificate checks, set `failures-before-down` to 1 unless you have a sp
 - **Trusting only internal openssl checks.**
   Inside the VPC you may see a different VIP, secret, or sidecar than public users. Internal green does not equal edge green. Always include an external reader for customer-facing hosts.
 - **Forgetting CDN <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s.**
-  Custom hostnames on CDNs and API gateways have their own cert lifecycle. Origin renewal does not automatically fix the edge name. Inventory every custom domain in the CDN/API console.
+  Custom hostnames on CDNs and API gateways have their own cert lifecycle. Origin renewal does not automatically fix the edge name. Inventory every <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a> in the CDN/API console.
 - **No owner on the alert.**
   Unowned monitors create “someone should fix this” loops until expiry day. Every certificate monitor needs a named team and escalation path. No owner means no response.
 - **No companion HTTP monitor for chain/hostname issues.**
@@ -527,7 +527,7 @@ Create a certificate monitor per bare hostname, set `cert_warn_days` (default 30
 
 ## 21. Conclusion
 
-Certificate expiry is not mysterious. It is a dated event teams either observe early or discover through customers. Keep renewal automation as the primary control. Read the live certificate from outside your assumptions. Warn on a threshold that matches how slow your humans and vendors actually are. Page on invalid/expired or imminent user impact—not on every distant calendar reminder. Pair expiry monitors with HTTP checks, renewer heartbeats, and domain/DNS integrity monitors so “HTTPS looks fine” means more than “one path returned a status code.”
+<a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate expiry</a> is not mysterious. It is a dated event teams either observe early or discover through customers. Keep renewal automation as the primary control. Read the live certificate from outside your assumptions. Warn on a threshold that matches how slow your humans and vendors actually are. Page on invalid/expired or imminent user impact—not on every distant calendar reminder. Pair expiry monitors with HTTP checks, renewer heartbeats, and domain/DNS integrity monitors so “HTTPS looks fine” means more than “one path returned a status code.”
 
 SSL certificate monitoring will not replace PKI strategy or CT monitoring. It will catch the common, preventable outage where everything is “up” until the calendar runs out.
 

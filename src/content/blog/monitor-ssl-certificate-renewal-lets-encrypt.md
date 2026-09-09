@@ -53,7 +53,7 @@ Second, encouraging automation. Manual renewal of a certificate every 90 days ac
 
 However, moving from a 1-year renewal cadence to a 90-day cadence quadrupled the probability of operational failure points occurring within any given quarter. Under Let's Encrypt's recommended operational model, days 1 through 59 represent normal operation where the server serves the leaf certificate and automated clients remain idle. At day 60, the automated client initiates its first renewal attempt. Between days 60 and 89, the client attempts periodic renewals until successful. At day 90, expiration occurs and connections hard-fail.
 
-The critical vulnerability in this timeline is the 30-day silent window between day 60 and day 89. Because ACME clients run in the background without user intervention, a failure on day 60 does not produce an immediate user-facing symptom. If an ingress configuration change, a DNS zone migration, or a firewall update breaks the ACME challenge, the renewer fails quietly in the background. The server continues serving the valid day 60 certificate. Without active, external certificate monitoring, the infrastructure engineering team has zero visibility that the clock is running out until the site drops offline on day 90.
+The critical vulnerability in this timeline is the 30-day silent window between day 60 and day 89. Because ACME clients run in the background without user intervention, a failure on day 60 does not produce an immediate user-facing symptom. If an ingress configuration change, a DNS zone migration, or a firewall update breaks the ACME challenge, the renewer fails quietly in the background. The server continues serving the valid day 60 certificate. Without active, external <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing, the infrastructure engineering team has zero visibility that the clock is running out until the site drops offline on day 90.
 
 ## Historical Context: From Multi-Year Manual CA Purchases to RFC 8555
 
@@ -313,7 +313,7 @@ WhatPing implements a split architecture:
 Let’s Encrypt Operational Rate Limits
 Let's Encrypt enforces strict production rate limits to protect their infrastructure:
 - Failed Validations Limit: 5 failures per account, per hostname, per hour. Exceeding this blocks retries for that hostname for 60 minutes.
-- Certificates per Registered Domain: 50 certificates per week. This affects large multi-tenant platforms issuing custom subdomains under an apex domain.
+- Certificates per Registered Domain: 50 certificates per week. This affects large multi-tenant platforms issuing custom subdomains under an <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">apex domain</a>.
 - Duplicate Certificate Limit: 5 identical certificates per week. If an automated script renews successfully but repeatedly requests certificates due to broken state files, you will be locked out for seven days.
 - New Orders Limit: 300 new orders per account per 3 hours.
 

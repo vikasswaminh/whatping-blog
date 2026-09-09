@@ -379,7 +379,7 @@ Common monitoring configuration issues and their resolutions:
 * **Issue C: Heartbeat Monitor Triggers False Outage Alerts**
   * *Root Cause:* The cron job execution time varies based on data volume, occasionally exceeding the expected execution window plus grace period.
   * *Resolution:* Increase the grace period window on the heartbeat monitor by 15–30 minutes, or update script execution schedules.
-* **Issue D: Certificate Monitor Fails on Port 587 or 993**
+* **Issue D: <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a> Fails on Port 587 or 993**
   * *Root Cause:* The check is executing a plain TLS handshake against a port that expects an explicit protocol upgrade (e.g., STARTTLS on port 587 for SMTP).
   * *Resolution:* Change the monitor type from a standard HTTPS/TLS check to a dedicated SMTP/IMAP protocol check configured to issue STARTTLS.
 

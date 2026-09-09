@@ -260,7 +260,7 @@ Daily checks against the public hostname, with warning thresholds (commonly 30 d
 **5. Domain expiry monitor**
 RDAP/WHOIS based registration expiry, independent of DNS cache. Warning at 60 and 30 days is practical for registrar and billing friction.
 
-**6. DNS drift monitor**
+**6. <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">DNS drift</a> monitor**
 Assert expected values for apex/www and critical records. Website migrations fail more often from partial DNS updates than from application deploys.
 
 **7. Email-auth monitor**

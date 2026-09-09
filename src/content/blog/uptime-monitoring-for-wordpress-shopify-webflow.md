@@ -78,7 +78,7 @@ Where a given site falls on this spectrum determines how much of this guide's Wo
 
 **Webflow monitoring architecture** follows the Shopify pattern for anything customized — forms, CMS collections, embedded scripts — but for simpler marketing sites without those features, external HTTP and DNS monitoring alone covers most of the realistic risk. The one Webflow-specific architectural wrinkle is the CDN layer: Webflow serves published sites through a content delivery network, which means a check needs to account for cache behavior when validating that content updates have actually propagated, rather than assuming an immediate reflection of published changes.
 
-Across all three, the architecture that catches the most real incidents is the same: external checks against multiple specific pages — not just the homepage — combined with DNS and certificate monitoring on the custom domain, since that domain layer is the one piece of infrastructure common to all three platforms that sits outside the platform's own guarantees.
+Across all three, the architecture that catches the most real incidents is the same: external checks against multiple specific pages — not just the homepage — combined with DNS and <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing on the custom domain, since that domain layer is the one piece of infrastructure common to all three platforms that sits outside the platform's own guarantees.
 
 ---
 

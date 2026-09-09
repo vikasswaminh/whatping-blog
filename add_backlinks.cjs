@@ -22,6 +22,7 @@ const links = [
   { slug: 'website-uptime-monitoring-guide-2026', title: 'Website Uptime Monitoring Guide', regex: /(website uptime monitoring guide|uptime monitoring guide|uptime monitoring 2026)/ig },
   { slug: 'monitor-ssl-certificate-renewal-lets-encrypt', title: "Monitor SSL Certificate Renewal Let's Encrypt", regex: /(let's encrypt|acme renewal|certificate renewal cycle|acme challenge|90.day (ssl|tls|certificate)|certbot renewal)/ig },
   { slug: 'monitor-https-certificate-expiry-apex-www-api', title: 'Monitor HTTPS Certificate Expiry Apex www API', regex: /(apex (domain|hostname)|www.*api.*certificate|multi-hostname (ssl|tls)|sni probing|server name indication|wildcard.*apex|multi-domain ssl)/ig },
+  { slug: 'expired-ssl-certificate-alerts-detect-escalate-recover', title: 'Expired SSL Certificate Alerts', regex: /(expired ssl certificate( alerts)?|ssl expiration monitoring|tls certificate alert|detect expired ssl|ssl incident escalation)/ig },
 ];
 
 for (const file of files) {
