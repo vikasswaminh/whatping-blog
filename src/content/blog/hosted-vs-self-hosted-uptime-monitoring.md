@@ -60,7 +60,7 @@ Hosted, SaaS-delivered monitoring emerged as broadband and cloud hosting matured
 
 The self-hosted side didn't stand still either. Uptime Kuma, released by Louis Lam in 2021, became the default self-hosted answer for teams wanting a modern web UI and Docker-based deployment without Nagios's configuration-file learning curve — bringing the SaaS-era experience back into a self-hosted package.
 
-The most recent shift, through 2025 and into 2026, is less about new architecture and more about what hosted vendors are willing to say about themselves. A newer cohort has started publishing actual limitations — single probe location, no SLA, solo-developer operation, retention windows — directly on marketing pages rather than only in a support ticket after a customer asks. This closes part of the trust gap that used to be self-hosting's main advantage: you no longer have to run the code yourself to know precisely what it does and doesn't do, provided the vendor says so in writing.
+The most recent shift, through 2025 and into 2026, is less about new architecture and more about what hosted vendors are willing to say about themselves. A newer cohort has started publishing actual limitations — single <a href="/blog/multi-region-uptime-monitoring-location-impacts-reliability/" class="theme-backlink">probe location</a>, no SLA, solo-developer operation, retention windows — directly on marketing pages rather than only in a support ticket after a customer asks. This closes part of the trust gap that used to be self-hosting's main advantage: you no longer have to run the code yourself to know precisely what it does and doesn't do, provided the vendor says so in writing.
 
 ---
 

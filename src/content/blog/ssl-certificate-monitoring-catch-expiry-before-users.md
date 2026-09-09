@@ -103,7 +103,7 @@ SSL certificate monitoring (more precisely, TLS <a href="/blog/prevent-ssl-certi
 
 | Term | Meaning | Not the same as |
 | :--- | :--- | :--- |
-| **Certificate expiry monitoring** | Days-remaining / validity checks | Full PKI posture management |
+| **<a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate expiry</a> monitoring** | Days-remaining / validity checks | Full PKI posture management |
 | **TLS handshake monitoring** | Can clients complete TLS now? | Calendar warning |
 | **Certificate transparency monitoring** | Unexpected certs in CT logs | Expiry countdown |
 | **Domain expiry monitoring** | Registry registration end date | TLS leaf end date |
@@ -281,7 +281,7 @@ cert-manager issues 90-day certs and renews around 30 days remaining. Configure 
 Annual cert purchase needs two approvers. Warn at 90 days on `app.clientportal.com`. Day-90 opens a procurement ticket; day-30 re-alert escalates if the new cert is not deployed. Renewal becomes a project, not a panic.
 
 **Example 3 — Marketing on CDN, API on origin**
-CDN manages the edge cert for `www`; origin ALB uses a separate cert for `api`. Monitoring only `www` is the classic miss. Create separate certificate monitors for both hostnames, plus DNS monitors to catch cutover mistakes.
+CDN manages the edge cert for `<a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">www`; origin ALB uses a separate cert for `api`. Monitoring only `www` is the classic miss. Create separate certificate</a> monitors for both hostnames, plus DNS monitors to catch cutover mistakes.
 
 **Example 4 — “Green expiry, red clients”**
 Leaf dates look fine, but one node omitted the intermediate. A pure days-remaining monitor can stay green while strict clients fail TLS. Keep an HTTP monitor on the same host. Expiry monitoring is necessary, not sufficient.
@@ -306,7 +306,7 @@ A 90-day cert changes slowly. Twenty-four hourly checks usually return the same 
 | **Custom cron + openssl** | Tailored | Becomes an unowned shadow product |
 
 ### WhatPing planning context
-WhatPing beta: free, 20 monitors per workspace, certificate checks default daily, 7 days raw history, one primary probe location. Spend budget on distinct hostnames, not duplicate minute-level SSL polls of the same leaf. A single external reader is not a global edge census.
+WhatPing beta: free, 20 monitors per workspace, certificate checks default daily, 7 days raw history, one primary <a href="/blog/multi-region-uptime-monitoring-location-impacts-reliability/" class="theme-backlink">probe location</a>. Spend budget on distinct hostnames, not duplicate minute-level SSL polls of the same leaf. A single external reader is not a global edge census.
 
 ## 11. Security
 
@@ -329,7 +329,7 @@ Public traffic may hit a different certificate than the one renewed. Compare the
 **Users report errors, certificate monitor green**
 Likely incomplete chain, hostname mismatch, revocation/client policy, or a regional edge serving different material. Rely on HTTP/TLS errors and client telemetry—not days-remaining alone.
 
-**ACME renewals fail repeatedly**
+**<a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">ACME renewal</a>s fail repeatedly**
 Inspect HTTP-01 reachability, DNS-01 permissions/propagation, rate limits, clock skew, WAF rules against the ACME user-agent, and disabled renewers after migrations. The SSL monitor proves time is running out; it does not fix ACME.
 
 **Mass alert cliff after a migration**
@@ -385,7 +385,7 @@ For 24h certificate checks, set `failures-before-down` to 1 unless you have a sp
   Web certificate monitors usually read port 443 only. Mail submission, LDAPS, and custom TLS listeners can expire independently. Cover those with the right check type—or accept that gap explicitly.
 - **Trusting only internal openssl checks.**
   Inside the VPC you may see a different VIP, secret, or sidecar than public users. Internal green does not equal edge green. Always include an external reader for customer-facing hosts.
-- **Forgetting CDN custom domains.**
+- **Forgetting CDN <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s.**
   Custom hostnames on CDNs and API gateways have their own cert lifecycle. Origin renewal does not automatically fix the edge name. Inventory every custom domain in the CDN/API console.
 - **No owner on the alert.**
   Unowned monitors create “someone should fix this” loops until expiry day. Every certificate monitor needs a named team and escalation path. No owner means no response.

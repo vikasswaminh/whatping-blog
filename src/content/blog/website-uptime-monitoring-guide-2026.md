@@ -36,7 +36,7 @@ If you operate a marketing site, SaaS app, documentation portal, agency portfoli
 * Website uptime is a customer-path property, not a single URL property. Homepage green does not mean login, search, API, or asset delivery are healthy.
 * Treat monitoring as a control plane: scheduler → probe → verdict → incident → alert delivery, with each stage isolated.
 * Prefer assertion-based HTTP checks over status-code-only checks. A 200 OK error page is still an outage.
-* Pair fast liveness checks with daily preventative monitors for TLS, domain expiry, DNS drift, and SPF/DMARC.
+* Pair fast liveness checks with daily preventative monitors for TLS, domain expiry, <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">DNS drift</a>, and SPF/DMARC.
 * Use heartbeat monitors for website-adjacent jobs that have no public endpoint: backups, sitemap rebuilds, certificate renewals, cache purge workers.
 * Reduce alert noise with thresholds, second-opinion verification, and staggered probe jitter.
 * Separate monitoring infrastructure from the website’s hosting path. Same-provider blindness is a real failure mode.
@@ -53,7 +53,7 @@ Most website outages that damage revenue and trust do not begin as dramatic “s
 A reverse proxy or origin returns HTTP 200 with a generic maintenance template, an empty shell HTML page, or an application error string. Browsers load something. Synthetic status-code monitors stay green. Users cannot sign in, search, or complete a purchase.
 
 ### Failure pattern B: Edge-healthy, origin-broken
-A CDN continues serving cached assets and a stale homepage while the origin API is unreachable. Marketing pages look fine. Authenticated product flows collapse. If you only monitor the apex domain through the CDN, you miss the origin failure until cache TTL expires and the edge starts failing too.
+A CDN continues serving cached assets and a stale homepage while the origin API is unreachable. Marketing pages look fine. Authenticated product flows collapse. If you only monitor the <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">apex domain</a> through the CDN, you miss the origin failure until cache TTL expires and the edge starts failing too.
 
 ### Failure pattern C: Cryptographic and registry time bombs
 Let’s Encrypt renewal fails after a WAF rule change. The certificate still has 11 days left, so nothing pages yet. Eleven days later, mobile clients and API consumers fail TLS handshake while your root redirect still works on an older cert path. Or the registrar card expires, WHOIS expiry approaches, and DNS vanishes overnight.
@@ -254,7 +254,7 @@ Support at minimum:
 **3. Timing breakdown recorder**
 Store DNS, connect, TLS, and total RTT separately. Website slowness often originates at the edge or handshake layer, not the HTML renderer.
 
-**4. Certificate monitor**
+**4. <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate monitor</a>**
 Daily checks against the public hostname, with warning thresholds (commonly 30 days) and chain validation — not merely “port 443 accepts connections.”
 
 **5. Domain expiry monitor**

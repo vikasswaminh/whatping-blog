@@ -32,7 +32,7 @@ This guide explains how location changes what “down” means, how multi-region
 - **Availability is path-dependent.** Probe location, ASN, DNS resolver, and CDN edge selection change the result.
 - **Single-region monitoring answers a local question.** It is valuable, but it is not a global SLA.
 - **Multi-region monitoring needs a verdict policy.** Raw failures from N cities are not an incident strategy.
-- **Consensus beats democracy theater.** “Any region fails → page” creates noise; “all regions fail → page” hides partial outages.
+- **Consensus beats democracy theater.** “Any region fails → page” creates noise; “all regions fail → page” hides <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">partial outage</a>s.
 - **CDN and anycast make geography weird.** Users and probes may hit different edges for the same hostname.
 - **Regional false negatives are real.** A green US monitor can miss an APAC routing blackhole.
 - **Second-opinion confirmation ≠ multi-region coverage.** Independent confirmation reduces path ambiguity; fleets measure geography.

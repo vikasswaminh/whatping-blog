@@ -46,7 +46,7 @@ Most teams discover certificate problems the hard way: a customer forwards a bro
 
 | What operators believe | What actually happens |
 | :--- | :--- |
-| "Let's Encrypt renews automatically." | Renewal jobs fail after DNS, WAF, or permission changes. |
+| "<a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> renews automatically." | Renewal jobs fail after DNS, WAF, or permission changes. |
 | "The CDN handles certs." | Custom hostnames, origin certs, or bypass paths still expire. |
 | "Our uptime tool would catch it." | Many tools only check HTTP status, not days remaining. |
 | "We renewed it last month." | The renewal happened on the wrong host, or the wrong cert. |
@@ -84,7 +84,7 @@ Modern practice treats certificate renewal as a managed pipeline with verificati
 - **ACME (Automatic Certificate Management Environment):** The IETF-standardized protocol (RFC 8555) that lets a client automatically prove control of a domain and obtain, renew, and revoke certificates from a CA such as Let's Encrypt.
 - **Renewal Window:** The period before expiry during which a certificate should be renewed. For Let's Encrypt, this is typically the last 30 days of a 90-day lifetime.
 - **Expiry Threshold (cert_warn_days):** The number of days remaining at which a monitoring system flags a certificate as "warning" rather than "healthy." WhatPing's default is 30 days.
-- **Certificate Monitor:** A check that reads the live TLS certificate a hostname presents on a given port, records issuer / expiry / days remaining, and fails when the cert is invalid or days remaining fall below a threshold.
+- **<a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a>:** A check that reads the live TLS certificate a hostname presents on a given port, records issuer / expiry / days remaining, and fails when the cert is invalid or days remaining fall below a threshold.
 - **Chain Completeness:** Whether the server presents the full certificate chain (leaf + intermediates) so that clients can validate the signature without fetching missing links.
 - **Post-Renewal Verification:** The act of confirming, after a renewal, that the new certificate is actually being served on the correct hostname and port — not just that a file was written to disk.
 - **Silent Automation Failure:** A renewal job that fails without producing an alert, because the automation was designed to run unattended and nothing verifies its output.
@@ -266,7 +266,7 @@ A certificate monitor must read the live certificate a hostname presents, not a 
 An expired or missing intermediate certificate causes the same client-side failure as an expired leaf. The monitor should flag incomplete chains, not just expired leaves.
 
 **Check hostname match**
-A certificate for the wrong hostname (e.g., a cert for www.example.com served on api.example.com) fails validation even if it is unexpired. The monitor should verify the certificate's Subject Alternative Names (SANs) cover the checked hostname.
+A certificate for the wrong hostname (e.g., a cert for <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">www.example.com served on api.example.com) fails validation even if it is unexpired. The monitor should verify the certificate</a>'s Subject Alternative Names (SANs) cover the checked hostname.
 
 **Respect CA rate limits**
 ACME clients must respect CA rate limits (e.g., Let's Encrypt's 5 duplicate certs per week, 50 per week). Aggressive retry loops can trigger rate limits that block legitimate renewals.

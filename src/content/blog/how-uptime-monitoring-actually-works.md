@@ -97,7 +97,7 @@ The Multi-Region Verdict Engine functions as a consensus-driven state machine. I
 
 **Step 4: TCP Connection Setup.** The socket issues a non-blocking SYN packet to the target IP on the designated port. The timing engine logs the duration elapsed until the target host returns a SYN-ACK packet and the socket completes the handshake with an ACK.
 
-**Step 5: TLS Negotiation** For encrypted endpoints, the worker starts the TLS handshake by transmitting a ClientHello frame configured with Server Name Indication (SNI) details. It tracks negotiation performance through receipt of the ServerHello, certificate validation, cipher key exchange, and receipt of the TLS Finished frame.
+**Step 5: TLS Negotiation** For encrypted endpoints, the worker starts the TLS handshake by transmitting a ClientHello frame configured with <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">Server Name Indication</a> (SNI) details. It tracks negotiation performance through receipt of the ServerHello, certificate validation, cipher key exchange, and receipt of the TLS Finished frame.
 
 **Step 6: Request Transmission and Time-To-First-Byte.** The prober writes the HTTP request headers and payload to the socket. measures the duration between sending the final request byte and receiving the initial response byte from the target server.
 

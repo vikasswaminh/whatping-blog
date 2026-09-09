@@ -89,7 +89,7 @@ The probe measures each phase of the network lifecycle: DNS resolution time, TCP
 * Is the SSL/TLS certificate valid and not expiring within the threshold window?
 * Does the response body contain expected text or valid JSON keys?
 
-If all criteria pass, the node records an "UP" event with latency telemetry. If any assertion fails, the state transitions to "PENDING_VERIFICATION." Within 2 to 5 seconds, two additional probe locations execute immediate re-checks. If the quorum confirms the failure, the monitor state officially changes to "DOWN," and alert dispatchers trigger on-call escalations.
+If all criteria pass, the node records an "UP" event with latency telemetry. If any assertion fails, the state transitions to "PENDING_VERIFICATION." Within 2 to 5 seconds, two additional <a href="/blog/multi-region-uptime-monitoring-location-impacts-reliability/" class="theme-backlink">probe location</a>s execute immediate re-checks. If the quorum confirms the failure, the monitor state officially changes to "DOWN," and alert dispatchers trigger on-call escalations.
 
 ---
 
@@ -229,7 +229,7 @@ When troubleshooting uptime monitoring behavior across different frequencies, ad
   * *Solution:* Move beyond basic status code checks. Add body content assertions in WhatPing (e.g., ensuring a specific HTML tag or string like `id="app-root"` is present in the response).
 * **SSL Expiration Alerts Flapping:**
   * *Cause:* Multiple edge CDN servers presenting mixed certificates during automated <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> renewals.
-  * *Solution:* Ensure the monitoring system uses modern SNI (Server Name Indication) handshakes and allows a 24-hour grace window on renewal propagation.
+  * *Solution:* Ensure the monitoring system uses modern SNI (<a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">Server Name Indication</a>) handshakes and allows a 24-hour grace window on renewal propagation.
 
 ---
 

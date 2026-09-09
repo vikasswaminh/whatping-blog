@@ -55,7 +55,7 @@ Reality is messier. Customers do not experience “ICMP reachability.” They ex
 
 
 **Failure story A — “Ping green, API dead”**
-Marketing site on the apex domain stays healthy. The API subdomain’s Let’s Encrypt renewal fails after a WAF rule change. Mobile clients start failing TLS handshakes. The homepage monitor remains green because it never touched `api.example.com`.
+Marketing site on the <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">apex domain</a> stays healthy. The API subdomain’s Let’s Encrypt renewal fails after a WAF rule change. Mobile clients start failing TLS handshakes. The homepage monitor remains green because it never touched `api.example.com`.
 
 **Failure story B — “Server up, internet gone”**
 Registrar billing fails. Nameservers are withdrawn. Every hostname stops resolving. The origin VM is still running. Local ping 203.0.113.10 succeeds from the VPC. External users see NXDOMAIN. Your ICMP monitor pointed at a raw IP never noticed the public identity collapse.
@@ -145,7 +145,7 @@ Walk through how a silent failure becomes visible—or stays invisible.
 4.  No monitor asserted certificate `notAfter` for the API host.
 5.  Dashboard stays green until humans notice.
 
-**Path 2: How a certificate monitor catches it earlier**
+**Path 2: How a <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a> catches it earlier**
 1.  Daily TLS monitor connects to `api.example.com:443`.
 2.  Reads leaf certificate timestamps and chain trust.
 3.  Computes `days_remaining = notAfter - now`.

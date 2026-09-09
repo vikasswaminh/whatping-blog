@@ -257,7 +257,7 @@ To maximize signal-to-noise ratio and prevent alert fatigue, configure monitorin
 * **Keyword Assertions:** Always specify an expected string present in successful render output (e.g., `"status":"ok"` or `"dashboard-root"`).
 * **Redirect Policy:** Limit to maximum 3 to 5 hops to catch infinite redirect loops.
 
-### TLS / SSL Certificate Monitors
+### TLS / SSL <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a>s
 * **<a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">Check Frequency</a>:** Daily (24-hour cycle). Certificates change slowly.
 * **Warning Threshold:** 30 days before expiration. This leaves ample time to resolve auto-renewal script failures without triggering emergency procedures.
 
@@ -513,7 +513,7 @@ If your server experiences a kernel panic, memory exhaustion, network outage, or
 When an initial probe node detects a check failure, the backend delays issuing an alert and immediately requests a second check from a distinct, network-isolated probe node. An outage is confirmed only if both nodes report a failure, eliminating false positives caused by local network transit issues.
 
 #### 4. Why are basic HTTP 200 checks insufficient for complete uptime coverage?
-A server can return an HTTP 200 OK status code while serving a blank page, rendering a database error message, or executing broken JavaScript. Furthermore, standard HTTP checks cannot detect upcoming TLS certificate expirations, domain registration lapses, DNS drift, or background worker failures.
+A server can return an HTTP 200 OK status code while serving a blank page, rendering a database error message, or executing broken JavaScript. Furthermore, standard HTTP checks cannot detect upcoming TLS certificate expirations, domain registration lapses, <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">DNS drift</a>, or background worker failures.
 
 #### 5. What is passive or heartbeat monitoring?
 Passive monitoring reverses the traditional probing model. Instead of an external service pinging your URL, your background jobs, backup scripts, or cron tasks send an HTTP ping to the monitoring tool upon completing execution. If the monitor does not receive a ping within the scheduled timeframe, it flags the job as failed and sends an alert.

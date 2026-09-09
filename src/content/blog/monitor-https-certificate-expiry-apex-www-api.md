@@ -26,7 +26,7 @@ When a team only checks their main website, they fall victim to the Multi-Hostna
 
 <div class="callout callout--note">
   <span class="callout__label">WhatPing Candid Disclosure</span>
-  WhatPing provides an agentless, distributed External Certificate Monitor engineered specifically to solve multi-hostname blind spots. WhatPing conducts automated, multi-region synthetic TLS handshakes against port 443 across your apex, www, API, and staging endpoints. It explicitly transmits RFC 6066 SNI headers for each target hostname, extracts live X.509 leaf certificates, tracks remaining validity days, detects intermediate chain deprecations, and routes proactive multi-tier warnings to your engineering team before a silent expiration halts your production traffic. Deploy automated external monitoring across all your public endpoints in under two minutes at https://monitor.whatping.com/.
+  WhatPing provides an agentless, distributed External <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a> engineered specifically to solve multi-hostname blind spots. WhatPing conducts automated, multi-region synthetic TLS handshakes against port 443 across your apex, www, API, and staging endpoints. It explicitly transmits RFC 6066 SNI headers for each target hostname, extracts live X.509 leaf certificates, tracks remaining validity days, detects intermediate chain deprecations, and routes proactive multi-tier warnings to your engineering team before a silent expiration halts your production traffic. Deploy automated external monitoring across all your public endpoints in under two minutes at https://monitor.whatping.com/.
 </div>
 
 ## Key Takeaways
@@ -164,7 +164,7 @@ internal.auth.example.com
 staging.api.example.com
 If an engineering team migrates their API from api.example.com/v1/ to a dedicated subdomain v1.api.example.com, their existing wildcard certificate will fail. To secure multi-level subdomains, teams must issue explicit wildcard certificates for that specific level (e.g., *.api.example.com) or list each FQDN as an explicit SAN entry.
 
-## The Catastrophic Blast Radius of API Certificate Expiry
+## The Catastrophic Blast Radius of API <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate Expiry</a>
 
 When a certificate on an apex or www hostname expires, the impact is primarily visual. A human user loading https://www.example.com is intercepted by a browser warning page:
 
@@ -213,7 +213,7 @@ Split-Horizon DNS Masking:
 Internal monitoring runs inside the corporate network and checks an internal load balancer that holds a renewed certificate. Meanwhile, the public-facing edge proxy was never updated and is actively failing for real users.
 
 Single-Page App (SPA) Rewrite Trap:
-A catch-all rule (try_files $uri /index.html) on www.example.com rewrites the ACME challenge path (/.well-known/acme-challenge/*). The CA receives HTML instead of the token, aborting the renewal.
+A catch-all rule (try_files $uri /index.html) on www.example.com rewrites the <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">ACME challenge</a> path (/.well-known/acme-challenge/*). The CA receives HTML instead of the token, aborting the renewal.
 
 ## Production Ingress & Web Server Configuration Reference
 To prevent cross-domain certificate collisions, your ingress layer must enforce three core rules:

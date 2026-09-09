@@ -461,7 +461,7 @@ gcloud compute firewall-rules create allow-whatping-monitoring \
 **Q6: Can monitoring requests affect my server log size?**
 **Answer:** Yes. Synthetic HTTP checks write log lines to web server access logs (such as `/var/log/nginx/access.log`). At 30-second checking intervals, a single monitor writes 2,880 log entries daily. To manage log growth, configure log rotation ( `logrotate`) or set up your web server to exclude the monitoring bot’s User-Agent string from access logs.
 
-**Q7: How does TLS certificate monitoring work alongside uptime checks?**
+**Q7: How does <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">TLS certificate monitoring</a> work alongside uptime checks?**
 **Answer:** During Layer 7 HTTPS uptime checks, the monitoring engine extracts the server’s SSL/TLS certificate during the TLS handshake. It inspects the certificate’s expiration date, signature algorithm, and SAN entries, triggering alerts when certificates approach expiration (e.g., 30, 15, or 7 days remaining).
 
 **Q8: Should I monitor private internal servers using external probe nodes?**
@@ -477,7 +477,7 @@ gcloud compute firewall-rules create allow-whatping-monitoring \
 
 ## 21. Conclusion
 
-Server uptime monitoring has evolved beyond simple ping scripts into a multi-layered discipline combining network path analysis, protocol verification, and operating system observability. Relying solely on ICMP ping checks leaves organizations vulnerable to undetected gray failures, application crashes, and customer-impacting outages.
+<a href="/blog/server-uptime-monitoring/" class="theme-backlink">Server uptime monitoring</a> has evolved beyond simple ping scripts into a multi-layered discipline combining network path analysis, protocol verification, and operating system observability. Relying solely on ICMP ping checks leaves organizations vulnerable to undetected gray failures, application crashes, and customer-impacting outages.
 
 By adopting a modern hybrid monitoring strategy—combining external multi-region synthetic checks from WhatPing with native internal OS automation using systemd or PowerShell—engineering teams gain total visibility over their infrastructure. Configuring proper failure thresholds, cloud security rules, and alert hysteresis ensures rapid incident detection without alert fatigue, keeping your Linux, Windows, and Cloud server infrastructure reliably online.
 

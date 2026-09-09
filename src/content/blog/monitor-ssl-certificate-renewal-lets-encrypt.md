@@ -21,7 +21,7 @@ When automated renewals work, they are silent. When they break, they fail just a
 
 Reliable operations require treating certificate renewal not as an unobserved background cron job, but as an externally verifiable operational pipeline. This guide covers the complete engineering blueprint for monitoring Let’s Encrypt certificate renewal cycles: how ACME validation fails behind modern infrastructure including web application firewalls, split-horizon DNS, and reverse proxies; why local renewer logs are insufficient; how to establish multi-tier alert tripwires across 30-day, 14-day, 7-day, and 48-hour escalations; how to write automated pre- and post-validation hooks; and how to verify active TLS handshakes using synthetic probes.
 
-WhatPing provides an agentless, external Certificate Monitor that executes automated TLS handshakes against port 443 daily from dedicated backend checkers. It parses the live leaf certificate served to real clients, tracks days until expiration, detects issuer churn, and opens an alert incident when remaining validity dips below your configurable warning threshold, which defaults to 30 days—calibrated directly for Let’s Encrypt’s 60-day renewal cycle. It does not execute local shell scripts or introspect private server keys; it acts as an uncompromised external safety net that catches renewal pipeline breakdowns before your customers do. Set up an external certificate check in under sixty seconds at https://monitor.whatping.com/.
+WhatPing provides an agentless, external <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a> that executes automated TLS handshakes against port 443 daily from dedicated backend checkers. It parses the live leaf certificate served to real clients, tracks days until expiration, detects issuer churn, and opens an alert incident when remaining validity dips below your configurable warning threshold, which defaults to 30 days—calibrated directly for Let’s Encrypt’s 60-day renewal cycle. It does not execute local shell scripts or introspect private server keys; it acts as an uncompromised external safety net that catches renewal pipeline breakdowns before your customers do. Set up an external certificate check in under sixty seconds at https://monitor.whatping.com/.
 
 ## Key Takeaways
 
@@ -242,7 +242,7 @@ systemctl list-timers certbot-renewal.timer
 To audit your infrastructure manually or build custom internal diagnostics, use the following operational scripts.
 
 1. The Low-Level OpenSSL Handshake Auditor
-This script interrogates a target domain's live port 443 using Server Name Indication, extracts the raw X.509 certificate, verifies the intermediate chain, and calculates the mathematical days remaining.
+This script interrogates a target domain's live port 443 using <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">Server Name Indication</a>, extracts the raw X.509 certificate, verifies the intermediate chain, and calculates the mathematical days remaining.
 
 Save as `check_ssl_expiry.sh`:
 ```bash
@@ -302,7 +302,7 @@ A frequent architectural mistake is misunderstanding the resource footprint and 
 <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">Monitoring Frequency</a>: Probed vs. Scheduled Checks
 There are two fundamentally different cadences in reliability engineering:
 - High-Frequency Probing for Liveness: Checking HTTP status codes, TCP socket reachability, or database pings every 20 to 60 seconds. This is necessary because server processes can crash in milliseconds.
-- Low-Frequency Scheduled Audits for Expiry: Checking TLS certificate expiration, domain registration expiration, or DNS drift.
+- Low-Frequency Scheduled Audits for Expiry: Checking TLS certificate expiration, domain registration expiration, or <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">DNS drift</a>.
 
 Running a full TLS handshake certificate inspection every 30 seconds across hundreds of endpoints is wasteful. Certificates do not expire abruptly without warning; their expiration date is fixed.
 
