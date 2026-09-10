@@ -454,15 +454,22 @@ const jsonLd = {
     margin-bottom: 10px;
   }
   .post-body :global(a.theme-backlink) {
-    color: #D97706;
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 35%, #FFB800 70%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 700;
     text-decoration: underline;
-    text-decoration-color: #F9B900;
+    text-decoration-color: #FF8C00;
     text-underline-offset: 3px;
     transition: all 0.2s ease;
   }
   .post-body :global(a.theme-backlink:hover) {
-    color: #F9B900;
+    background: linear-gradient(135deg, #e05e00 0%, #e07800 35%, #f5a800 70%, #ffc800 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration-color: #e07800;
   }
   .post-body :global(img) {
     max-width: 100%;
@@ -658,11 +665,18 @@ const jsonLd = {
   .theme-purple .post-body :global(h3:hover) { color: #8338EC; }
   
   .theme-purple .post-body :global(a.theme-backlink) {
+    background: none;
+    -webkit-text-fill-color: #7E22CE;
+    background-clip: unset;
     color: #7E22CE;
     text-decoration-color: #8338EC;
   }
   .theme-purple .post-body :global(a.theme-backlink:hover) {
+    background: none;
+    -webkit-text-fill-color: #8338EC;
+    background-clip: unset;
     color: #8338EC;
+    text-decoration-color: #8338EC;
   }
 
   .theme-purple .post-body :global(blockquote) {

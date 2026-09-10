@@ -348,17 +348,17 @@ samp {
    at 2.4:1. Matching specificity plus the :not(.btn) exclusions elsewhere. */
 a.btn--primary,
 .btn--primary {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--gradient-brand);
+  color: #fff;
 }
 a.btn--primary:hover,
 .btn--primary:hover {
-  background: var(--accent-hover);
-  color: var(--accent-ink);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  background: linear-gradient(135deg, #e05e00 0%, #e07800 35%, #f5a800 70%, #ffc800 100%);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.25);
 }
 .btn--primary:active {
-  background: var(--accent-active);
+  background: linear-gradient(135deg, #cc5500 0%, #cc6e00 35%, #e09800 70%, #f0bb00 100%);
 }
 
 a.btn--secondary,

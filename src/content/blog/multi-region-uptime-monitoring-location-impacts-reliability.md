@@ -530,7 +530,7 @@ If nobody owns noisy regions, flapping alerts rot forever and on-call stops trus
 “DOWN” with no region, resolved IP, CDN vs origin target, or customer impact map forces guesswork. Engineers waste the first fifteen minutes reconstructing scope. Encode topology into alerts and incident templates so response starts with facts, not folklore.
 
 **Forgetting silent failures**
-Expired certificates, lapsed domains, DNS drift, and broken SPF/DMARC take services down regardless of how many cities you probe—and often while shallow HTTP checks still look fine elsewhere until the failure fully lands. Geography does not replace integrity monitors. If you only buy map pins, you still miss the quiet outages.
+Expired certificates, lapsed domains, <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">DNS drift</a>, and broken SPF/DMARC take services down regardless of how many cities you probe—and often while shallow HTTP checks still look fine elsewhere until the failure fully lands. Geography does not replace integrity monitors. If you only buy map pins, you still miss the quiet outages.
 
 ## 15. Alternatives
 
@@ -683,7 +683,7 @@ Not today. WhatPing runs from one primary location and can annotate HTTP inciden
 
 Location is not a cosmetic filter on an uptime dashboard. It changes the meaning of the measurement. A green check from one metro is evidence about one path. A red check from one metro is evidence about one path. Multi-region uptime monitoring exists to build a wider picture—but only if you pair multiple vantage points with an explicit consensus policy, regional severity rules, and topology-aware debugging.
 
-If your product is truly global, invest in a small, deliberate probe set and treat partial outages as first-class incidents. If your product is not, do not buy map pins for comfort. Buy clarity: fast liveness, independent confirmation when paths disagree, and monitors for the silent failures geography never sees—<a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a>, domain lapse, DNS drift, email-auth breakage, and missed heartbeats.
+If your product is truly global, invest in a small, deliberate probe set and treat partial outages as first-class incidents. If your product is not, do not buy map pins for comfort. Buy clarity: fast liveness, independent confirmation when paths disagree, and monitors for the silent failures geography never sees—<a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a>, domain lapse, <a href="/blog/dns-change-detection-how-to-know-when-records-change/" class="theme-backlink">DNS drift</a>, email-auth breakage, and missed heartbeats.
 
 That is the practical reliability stack in 2026. Use multi-region where geography is the risk. Use honest single-location monitoring where truthfulness and coverage of hidden failure modes matter more than decorative worldwide pins.
 

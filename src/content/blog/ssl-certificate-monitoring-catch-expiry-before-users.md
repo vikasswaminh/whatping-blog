@@ -468,7 +468,7 @@ Cloud makes renewals easier and creates new ways to watch the wrong certificate.
 | **CDN / edge cert** | Edge hostname(s) |
 | **ALB/NLB + ACM** | Public LB hostnames / aliases |
 | **Ingress + cert-manager** | Ingress hosts |
-| **API Gateway custom domains** | Custom domain names |
+| **API Gateway <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">custom domain</a>s** | Custom domain names |
 
 ### Cloud-specific failure modes
 Renewed cert not attached to the right listener; DNS still pointing at an old distribution; blue/green presenting different certs; “issued” ≠ “associated.”

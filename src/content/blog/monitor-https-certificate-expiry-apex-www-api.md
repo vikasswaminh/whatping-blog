@@ -460,7 +460,7 @@ Cons: Multiplies active certificates, requiring an automated external monitor (l
 
 ## Comprehensive Tooling and Strategy Comparison Matrix
 
-When selecting a monitoring strategy for multi-hostname architectures, teams typically evaluate four approaches: ad-hoc command-line scripts, open-source Prometheus blackbox exporters, generic website uptime monitors, and purpose-built external certificate monitors like WhatPing.
+When selecting a monitoring strategy for multi-hostname architectures, teams typically evaluate four approaches: ad-hoc command-line scripts, open-source Prometheus blackbox exporters, generic website uptime monitors, and purpose-built external <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>s like WhatPing.
 
 | Feature / Capability | Ad-Hoc Bash/Python Scripts | Prometheus Blackbox Exporter | Generic Uptime Monitors | WhatPing External Certificate Monitor |
 | :--- | :--- | :--- | :--- | :--- |
@@ -492,7 +492,7 @@ Because WhatPing operates externally, no software agents, daemons, or root crede
 Step 2: Configure the Certificate Expiration Threshold
 For each registered monitor, set your warning perimeter:
 
-cert_warn_days: Configure your primary warning threshold (e.g., 30 days for 90-day Let's Encrypt lifecycles, or 14 days for commercial certificates).
+cert_warn_days: Configure your primary warning threshold (e.g., 30 days for 90-day <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> lifecycles, or 14 days for commercial certificates).
 WhatPing’s backend scheduler will automatically audit the TLS socket on port 443 daily, negotiating an explicit SNI handshake, parsing the leaf certificate’s notAfter timestamp, and tracking validity decay.
 
 Step 3: Configure Notification Channels and Escalations

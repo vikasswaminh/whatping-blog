@@ -7,7 +7,7 @@ const currentPath = Astro.url.pathname;
 <header class="blog-header">
   <div class="blog-header-inner">
     <a href="/" class="blog-brand">
-      <img src="/logo.png" alt="WhatPing Logo" class="blog-logo-img" width="180" height="64" fetchpriority="high" decoding="async" />
+      <img src="/logo.png" alt="WhatPing Logo" class="blog-logo-img" width="420" height="150" fetchpriority="high" decoding="async" />
     </a>
 
     <button id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
@@ -56,7 +56,7 @@ const currentPath = Astro.url.pathname;
   }
 
   .blog-logo-img {
-    height: 64px;
+    height: 72px;
     width: auto;
     display: block;
   }
@@ -96,8 +96,8 @@ const currentPath = Astro.url.pathname;
   }
 
   .blog-nav-link--theme {
-    color: #0f172a;
-    background: #F9B900;
+    color: #fff;
+    background: var(--gradient-brand);
     font-weight: 700;
     font-size: 14px;
     padding: 6px 14px;
@@ -106,9 +106,9 @@ const currentPath = Astro.url.pathname;
   }
 
   .blog-nav-link--theme:hover {
-    background: #FFBD00;
+    background: linear-gradient(135deg, #e05e00 0%, #e07800 35%, #f5a800 70%, #ffc800 100%);
     text-decoration: none;
-    box-shadow: 0 2px 8px rgba(249, 185, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.35);
   }
 
   @media (max-width: 640px) {

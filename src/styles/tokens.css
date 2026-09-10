@@ -33,7 +33,7 @@
   /* Cold near-black with a faint cyan cast: a screen, not anodised metal. */
   --console-void: #08090a;
   --console-bay: #0e1113;
-  --paper-stock: #e9e7e1;
+  --paper-stock: #ffffff;
 
   /* --- 2. surfaces, console -------------------------------------------- */
 
@@ -89,6 +89,9 @@
 
   --focus-ring: color-mix(in oklch, var(--signal-amber) 75%, transparent);
   --selection: color-mix(in oklch, var(--signal-amber) 30%, transparent);
+
+  /* Brand gradient: orange → yellow (matches the logo) */
+  --gradient-brand: linear-gradient(135deg, #FF6B00 0%, #FF8C00 35%, #FFB800 70%, #FFD700 100%);
 
   /* --- typography ------------------------------------------------------- */
 
@@ -201,48 +204,16 @@
    -------------------------------------------------------------------------- */
 
 .band--paper {
-  --surface-canvas: var(--paper-stock);
-  --surface-raised: #f3f1ec;
-  --surface-sunken: #ded9cf;
-  --surface-overlay: #faf9f6;
-  --surface-hover: #f7f5f1;
+  --surface-canvas: #ffffff;
+  --surface-raised: #f8f8f8;
+  --surface-sunken: #f0f0f0;
+  --surface-overlay: #ffffff;
+  --surface-hover: #f5f5f5;
 
-  --text-primary: #16181a;
-  --text-secondary: #3a3f42;
-  --text-tertiary: #575e61;
-  /* 4.73:1 on paper. #6a7276 was the natural-looking value and it lands at
-     3.97:1 — verify-contrast.py refused it. */
-  --text-quaternary: #5f6669;
-
-  --hairline: #cfcabe;
-  --hairline-strong: #b3aa99;
-  --hairline-loud: #968b74;
-
-  /* Here the two-form accent comes back: amber fills, deep amber is the only
-     form words are ever set in. 5.06:1. */
-  --accent-text: var(--signal-amber-deep);
-  --accent-indicator: var(--signal-amber-deep);
-  --accent-hover: color-mix(in oklch, var(--signal-amber), black 8%);
-  --accent-soft: #f0e6d2;
-  --accent-glow: color-mix(in oklch, var(--signal-amber) 18%, transparent);
-
-  /* Status hues are re-solved for a light ground rather than reused. */
-  --status-up: #0f6b3c;
-  --status-down: #b3200f;
-  --status-warn: #8a4a00;
-  --status-up-bg: #dcece2;
-  --status-down-bg: #f6e2df;
-  --status-warn-bg: #f2e7cf;
-
-  --focus-ring: color-mix(in oklch, var(--signal-amber-deep) 70%, transparent);
-  --selection: color-mix(in oklch, var(--signal-amber) 42%, transparent);
-
-  /* Shadow reads on paper, so it comes back — but hairline-first, still. */
-  --shadow-2xs: 0 1px 2px 0 #1618180d;
-  --shadow-xs: 0 1px 2px 0 #16181812;
-  --shadow-sm: 0 1px 2px 0 #16181814;
-  --shadow-md: 0 1px 3px 0 #16181818;
-  --shadow-lg: 0 2px 8px -2px #1618181f;
+  /* Disable all texture/grain/scanline overlays on white background */
+  --texture-grain: 0;
+  --texture-scan: transparent;
+  --grid-line: transparent;
 
   background: var(--surface-canvas);
   color: var(--text-secondary);

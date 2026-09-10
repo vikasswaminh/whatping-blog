@@ -28,7 +28,7 @@ If you only remember one line: **liveness is not integrity, and integrity is not
 
 *   **Ping proves reachability, not usability.** ICMP success says nothing about TLS validity, DNS correctness, application content, or background jobs.
 *   **HTTP 200 is not a health contract.** Error pages, maintenance shells, and broken API payloads can still return success codes.
-*   **The worst outages are slow.** <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate expiry</a>, domain lapse, DNS drift, and email-auth corruption accumulate quietly for days or weeks.
+*   **The worst outages are slow.** <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">Certificate expiry</a>, domain lapse, <a href="/blog/dns-change-detection-how-to-know-when-records-change/" class="theme-backlink">DNS drift</a>, and email-auth corruption accumulate quietly for days or weeks.
 *   **Private work fails silently.** Backups, billing workers, and queue consumers often have no public endpoint for classic probes.
 *   **Alert channels can fail independently.** Broken SPF/DMARC can suppress the very emails that should wake you up.
 *   **Preventative monitors beat reactive pings.** Daily certificate, domain, DNS, and email-auth checks close the gaps ping cannot see.
@@ -358,7 +358,7 @@ Store pass/fail, timings, and compact error classes. Avoid retaining full third-
 *   **Likely causes:** DNS resolution failure for some resolvers, TLS errors on specific hostnames, regional CDN issues, asserted-content failure.
 *   **Actions:** Check hostname-specific TLS, DNS from public resolvers, and HTTP body assertions on the exact URL users hit.
 
-**Symptom: Certificate monitor warns but HTTP still works**
+**Symptom: <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate monitor</a> warns but HTTP still works**
 *   This is success, not a bug. Expiry monitors are supposed to fire while liveness remains green. Treat as preventative work.
 
 **Symptom: Domain monitor cannot parse expiry**

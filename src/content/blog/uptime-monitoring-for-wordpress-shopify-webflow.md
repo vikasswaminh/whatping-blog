@@ -120,7 +120,7 @@ Across all three, the architecture that catches the most real incidents is the s
 
 **Step 1:** Inventory the actual failure surface, not just the homepage. For each platform, list the specific pages and interactions that matter — checkout, key landing pages, forms, any custom integration — rather than defaulting to a single homepage check.
 
-**Step 2:** Configure DNS and certificate monitoring on the custom domain first, since this is the shared point of failure across all three platforms and the one most commonly broken during migrations, renewals, or registrar changes.
+**Step 2:** Configure DNS and <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing on the custom domain first, since this is the shared point of failure across all three platforms and the one most commonly broken during migrations, renewals, or registrar changes.
 
 **Step 3:** Set up keyword-based HTTP checks on each critical page, asserting the presence of expected content rather than only the status code, since all three platforms can return 200 on a broken page.
 

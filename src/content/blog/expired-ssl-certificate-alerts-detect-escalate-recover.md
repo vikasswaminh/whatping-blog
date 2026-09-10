@@ -23,7 +23,7 @@ Preventing certificate outages requires treating TLS expiration not as a static 
 
 <div class="callout callout--note">
   <span class="callout__label">WhatPing Candid Disclosure</span>
-  WhatPing provides an agentless, hosted <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a> that executes external TLS handshakes across your endpoints daily from dedicated probe infrastructure. WhatPing inspects the live leaf certificate negotiated during the TLS 1.3/1.2 handshake, validates the full X.509 trust chain, tracks remaining calendar days against custom warning tripwires (such as 30-day, 14-day, and 7-day thresholds), detects intermediate CA invalidations, and dispatches immediate incident webhooks to PagerDuty, Opsgenie, and chat channels. WhatPing operates completely out-of-band without server agents, cron dependencies, or access to private keys. You can configure external certificate monitoring for your public domains in sixty seconds at https://monitor.whatping.com/.
+  WhatPing provides an agentless, hosted <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a> that executes external TLS handshakes across your endpoints daily from dedicated probe infrastructure. WhatPing inspects the live leaf certificate negotiated during the TLS 1.3/1.2 handshake, validates the full X.509 trust chain, tracks remaining calendar days against custom warning tripwires (such as 30-day, 14-day, and 7-day thresholds), detects intermediate CA invalidations, and dispatches immediate incident webhooks to PagerDuty, Opsgenie, and chat channels. WhatPing operates completely out-of-band without server agents, cron dependencies, or access to private keys. You can configure external <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing for your public domains in sixty seconds at https://monitor.whatping.com/.
 </div>
 
 ## Key Takeaways
@@ -56,7 +56,7 @@ Certificate alerting has evolved through three distinct operational eras:
 
 The Manual Era (1995–2015): Certificates lasted 2 to 5 years and were bought manually from commercial CAs. Alerting relied on spreadsheets, calendar invites, and basic Nagios plugins (check_http -C 30). The main failure mode was lost institutional knowledge when the admin who bought the certificate left the company.
 
-The ACME Revolution (2015–2020): The CA/B Forum slashed lifespans to 398 days, while Let’s Encrypt introduced the ACME protocol with 90-day certificates renewing every 60 days. Teams went from renewing a handful of multi-year certificates to managing thousands of automated renewals cycling four times a year.
+The ACME Revolution (2015–2020): The CA/B Forum slashed lifespans to 398 days, while Let’s Encrypt introduced the ACME protocol with <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">90-day certificate</a>s renewing every 60 days. Teams went from renewing a handful of multi-year certificates to managing thousands of automated renewals cycling four times a year.
 
 Cloud-Native Synthetics (2020–2026): Infrastructure fragmented across CDNs (Cloudflare, CloudFront), Kubernetes ingresses, and microservice mTLS meshes. A single app now serves different certificates at the edge versus the origin. Point-in-time checks have been replaced by continuous external synthetic monitoring that inspects SNI, leaf validity, and CA chains directly from the public internet.
 
@@ -89,7 +89,7 @@ An expired certificate alert is not merely a boolean flag; it is a contextual op
 To ensure zero-downtime reliability, an SSL alerting system must decouple the observation layer from the application layer. The system consists of four primary structural tiers: the External Probe Engine, the Telemetry & Validation Processor, the Escalation Tripwire Engine, and the Multi-Channel Dispatcher.
 
 Layer 1: The External Synthetic Probe Engine
-The foundation of the architecture is an out-of-band probe cluster located outside the monitored infrastructure's network boundary. This engine initiates real-world TCP handshakes over port 443 (or custom TLS ports such as 8443 or 6443) and performs an explicit TLS ClientHello with the target hostname embedded in the Server Name Indication (SNI) extension (RFC 6066).
+The foundation of the architecture is an out-of-band probe cluster located outside the monitored infrastructure's network boundary. This engine initiates real-world TCP handshakes over port 443 (or custom TLS ports such as 8443 or 6443) and performs an explicit TLS ClientHello with the target hostname embedded in the <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">Server Name Indication</a> (SNI) extension (RFC 6066).
 
 By initiating the connection externally, the probe evaluates the exact cryptographic parameters encountered by real end users, bypassing local DNS overrides, host-file hacks, and internal network shortcuts.
 

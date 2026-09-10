@@ -297,7 +297,7 @@ fi
 
 ## Resource Scaling, Ingress Overhead, and ACME Rate Limits
 
-A frequent architectural mistake is misunderstanding the resource footprint and operational limits of certificate monitoring and automated renewals.
+A frequent architectural mistake is misunderstanding the resource footprint and operational limits of <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing and automated renewals.
 
 <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">Monitoring Frequency</a>: Probed vs. Scheduled Checks
 There are two fundamentally different cadences in reliability engineering:
@@ -483,7 +483,7 @@ For platforms deploying behind edge CDNs, architecture teams must address the ch
 
 When a browser connects, it terminates TLS against the CDN edge. The CDN then initiates an independent TLS connection to the origin server.
 
-If your synthetic monitor only queries the public apex domain, it terminates TLS against the CDN edge, where certificates are often managed automatically by the CDN vendor with long lifespans. Meanwhile, the Let's Encrypt certificate running on your origin server might be expiring in 48 hours. If the origin certificate expires, the CDN edge displays an invalid certificate error to visitors.
+If your synthetic monitor only queries the public <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">apex domain</a>, it terminates TLS against the CDN edge, where certificates are often managed automatically by the CDN vendor with long lifespans. Meanwhile, the Let's Encrypt certificate running on your origin server might be expiring in 48 hours. If the origin certificate expires, the CDN edge displays an invalid certificate error to visitors.
 
 To monitor Let's Encrypt cycles properly behind a CDN, implement dual-target monitoring:
 - Target 1 (The Edge): Point a certificate monitor to your public domain on port 443 to audit the public-facing edge certificate.

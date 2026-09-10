@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
       <!-- Brand Column -->
       <div class="footer-brand">
         <a href="https://whatping.com" class="footer-logo">
-          <img src="/logo.png" alt="WhatPing Logo" width="150" height="54" loading="lazy" decoding="async" />
+          <img src="/logo.png" alt="WhatPing Logo" width="340" height="121" loading="lazy" decoding="async" />
         </a>
         <p class="brand-desc">
           Uptime and performance monitoring, simplified. Built for reliability, humans, and autonomous systems.
@@ -94,7 +94,7 @@ const year = new Date().getFullYear();
 <style>
   .site-footer {
     border-top: 1px solid var(--border, #ede8da);
-    background: #FFFDF0;
+    background: linear-gradient(135deg, #fff8f0 0%, #fffbf0 100%);
     padding: 60px 24px 30px 24px;
     margin-top: 80px;
     font-family: var(--font-sans);
@@ -121,9 +121,10 @@ const year = new Date().getFullYear();
     max-width: 320px;
   }
   .footer-logo img {
-    height: 54px;
+    height: 80px;
     width: auto;
     margin-bottom: 24px;
+    mix-blend-mode: multiply;
   }
   .brand-desc {
     color: #64748B;
