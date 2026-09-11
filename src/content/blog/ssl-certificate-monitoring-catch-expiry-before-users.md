@@ -543,3 +543,12 @@ Next step: add certificate monitors for every public hostname at https://monitor
   <p>Learn more about <a href="/blog/how-uptime-monitoring-actually-works/">how uptime monitoring works</a> or explore <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/">hidden causes of downtime</a> to catch every blind spot.</p>
   <a href="https://monitor.whatping.com" class="related-cta-btn">Start Free with WhatPing →</a>
 </div>
+
+### Related SSL Monitoring Guides
+
+* <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">How to Monitor SSL Certificate Renewal Without Missing Let's Encrypt Cycles</a>
+* <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">Monitor HTTPS Certificate Expiry Across Apex, www, and API Hostnames</a>
+* <a href="/blog/expired-ssl-certificate-alerts-detect-escalate-recover/" class="theme-backlink">Expired SSL Certificate Alerts</a>
+* <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">Hidden Causes of Website Downtime</a>
+* <a href="/blog/website-uptime-monitoring-guide-2026/" class="theme-backlink">Website Uptime Monitoring Guide 2026</a>
+

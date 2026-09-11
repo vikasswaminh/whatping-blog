@@ -30,7 +30,6 @@ This guide lays out a decision framework built around five questions that actual
 * **Compliance requirements decide this faster than preference does.** If your data-residency, audit, or SOC 2/ISO scope explicitly names monitoring telemetry, that constraint usually settles the question before cost or convenience gets a vote.
 * **Self-hosted tools trade setup time for operational time.** You pay once, up front, in configuration — then repeatedly, forever, in patching, upgrades, and the day a Docker base image gets deprecated.
 * **A credible hosted vendor tells you what it cannot do.** The honesty of a status page, pricing page, and security page — stated limitations included — is a better signal of vendor reliability than any uptime percentage in the hero section.
-* **Hybrid is the default for teams above a certain size, not an edge case.** Internal agent-based checks for resource-level visibility plus one external hosted layer for public reachability is the normal shape of a mature monitoring setup, not a compromise between two "pure" strategies. For evaluating solutions, check out our comparison of [best uptime monitoring tools](/blog/best-uptime-monitoring-tools/). This highlights the importance of having a robust [choose an uptime monitoring service](/blog/how-to-choose-an-uptime-monitoring-service-in-2026/) strategy. This highlights the importance of having a robust [website uptime monitoring](/blog/website-uptime-monitoring-guide-2026/) strategy.
 
 ---
 
@@ -461,3 +460,12 @@ Answer: Usually yes. Prometheus-style pull-based telemetry is excellent for reso
 The hosted-versus-self-hosted question resists a universal answer because it isn't really one question — it's five smaller ones about engineering capacity, compliance scope, data-sharing tolerance, the number of vantage points you need, and how much you value being able to read the exact logic deciding whether you're down. Teams that treat it as a single cost comparison tend to pick based on whichever number is smaller today and pay the difference later, either in engineer-hours spent patching a self-hosted instance nobody planned to own long-term, or in a vendor dependency whose limitations only become clear during an incident.
 
 The more durable approach is the one this guide has pointed toward throughout: separate the failure-domain question from the ownership question. A self-hosted monitor placed outside the network it watches solves most of the same problem a hosted vendor solves, without the data-sharing trade-off — and a hosted monitor from a vendor that documents its actual limitations honestly gives you most of self-hosting's transparency without the maintenance burden. Pick the model that matches the constraint you actually have, reassess it as your team and compliance scope change, and treat the monitoring layer itself as a system with its own uptime requirement — because the day it fails silently is the day you find out the hard way which model you should have chosen.
+
+### Related Uptime Monitoring Guides
+
+* <a href="/blog/best-uptime-monitoring-tools/" class="theme-backlink">7 Best Uptime Monitoring Tools for Startups</a>
+* <a href="/blog/how-to-choose-an-uptime-monitoring-service-in-2026/" class="theme-backlink">How to Choose an Uptime Monitoring Service</a>
+* <a href="/blog/website-uptime-monitoring-guide-2026/" class="theme-backlink">Website Uptime Monitoring Guide 2026</a>
+* <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">How Uptime Monitoring Works</a>
+* <a href="/blog/server-uptime-monitoring/" class="theme-backlink">Server Uptime Monitoring Best Practices</a>
+

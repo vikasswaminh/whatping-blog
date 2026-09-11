@@ -23,7 +23,7 @@ This guide is a prevention playbook, not a monitoring explainer. It assumes you 
 
 <div class="callout callout--note">
   <span class="callout__label">WhatPing note (honest)</span>
-  WhatPing includes a dedicated [SSL certificate monitoring](/blog/ssl-certificate-monitoring-catch-expiry-before-users/) that reads the live TLS certificate for a bare hostname on port 443 once a day by default, records issuer / expiry / days remaining, and fails when the cert is invalid or days remaining fall below your <code>cert_warn_days</code> threshold (default 30). It does not check OCSP/CRL revocation, full chain completeness, or non-443 ports. Pair it with an HTTP monitor when you need handshake/chain failures to surface as liveness incidents. Start at https://monitor.whatping.com/.
+  WhatPing includes a dedicated <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">SSL certificate monitoring</a> that reads the live TLS certificate for a bare hostname on port 443 once a day by default, records issuer / expiry / days remaining, and fails when the cert is invalid or days remaining fall below your <code>cert_warn_days</code> threshold (default 30). It does not check OCSP/CRL revocation, full chain completeness, or non-443 ports. Pair it with an HTTP monitor when you need handshake/chain failures to surface as liveness incidents. Start at https://monitor.whatping.com/.
 </div>
 
 ## Key Takeaways
@@ -111,7 +111,7 @@ The automation plane renews. The data plane serves. The verification plane confi
 ## Internal Working Mechanics
 
 - **Step 1: Certificate issuance (ACME handshake):** The ACME client generates a key pair and a Certificate Signing Request (CSR), then proves control of the domain via a challenge. For HTTP-01, it places a token at a well-known URL. For DNS-01, it creates a TXT record. The CA validates the challenge and issues a certificate.
-- **Step 2: Scheduled renewal:** The client schedules renewal before expiry. Let's Encrypt certificates are valid 90 days, and the client typically attempts renewal in the last 30 days. Renewal is scheduled with randomized jitter to avoid thundering-herd load on the CA.
+- **Step 2: Scheduled renewal:** The client schedules renewal before expiry. <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> certificates are valid 90 days, and the client typically attempts renewal in the last 30 days. Renewal is scheduled with randomized jitter to avoid thundering-herd load on the CA.
 - **Step 3: Renewal execution:** When the renewal timer fires, the client repeats the challenge, obtains a new certificate, writes it to disk, and triggers a reload of the serving process. This is the step that most often fails silently.
 - **Step 4: Post-renewal verification:** A robust system verifies that the new certificate is actually being served. This can be a local check (read the served cert and compare serial/expiry) or an external check (a <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a> reading the live cert from outside).
 - **Step 5: Expiry margin tracking:** A <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a> reads the live cert on a schedule (daily by default), parses the notAfter date, computes days remaining, and compares it to the warning threshold. If days remaining fall below the threshold, the check fails.
@@ -128,7 +128,7 @@ The automation plane renews. The data plane serves. The verification plane confi
 - Purpose: Terminates TLS and presents the certificate to clients.
 - Failure modes: New cert written but not reloaded; wrong cert installed; chain incomplete; cert on the wrong hostname.
 
-**Component 3: The Certificate Monitor**
+**Component 3: The <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a>**
 - Purpose: Reads the live served certificate and tracks days remaining.
 - Key attributes: Reads the actual cert on port 443 (not a file on disk), records issuer / expiry / days remaining, fails when invalid or below threshold.
 - WhatPing default: Daily check, cert_warn_days = 30.
@@ -445,3 +445,4 @@ The prevention model is layered: automate renewal, verify the served certificate
 The practical starting point is simple: cover every public hostname with a certificate monitor, set a warning threshold that matches your renewal reality, and pair it with an HTTP check for full handshake coverage. When a renewal fails silently, the monitor turns it into a ticket at 30 days — not an incident at day zero.
 
 That is the difference between a team that treats expiry as a surprise and a team that treats it as a scheduled, preventable event. The first gets an outage. The second gets a quiet ticket, a quick fix, and a certificate that renews itself — verified, every day, before users ever notice.
+

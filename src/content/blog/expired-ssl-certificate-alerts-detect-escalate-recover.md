@@ -219,7 +219,7 @@ WhatPing dispatches structured JSON when a threshold is breached, ready for Page
   "monitor": { "target_fqdn": "api.example.com", "port": 443, "current_ip": "198.51.100.42" },
   "certificate": {
     "common_name": "api.example.com",
-    "issuer": "Let's Encrypt Authority R3",
+    "issuer": "<a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a> Authority R3",
     "valid_until": "2026-09-16T06:14:22Z",
     "days_remaining": 7,
     "is_expired": false
@@ -381,7 +381,7 @@ Dumping expiration warnings into a general #devops-notifications Slack or Teams 
 
 ## Architectural Alternatives and Trade-Offs
 
-When designing an enterprise-wide certificate monitoring architecture, teams must balance four distinct observation strategies:
+When designing an enterprise-wide <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing architecture, teams must balance four distinct observation strategies:
 
 | Monitoring Approach | Deployment Cost | Detection Blind Spots | Operational Fit |
 | :--- | :--- | :--- | :--- |
@@ -466,7 +466,7 @@ Cloud Edge Universal SSL: If behind Cloudflare or AWS CloudFront, enable edge-ma
 RFC 5280: Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile. IETF Standards Track. https://datatracker.ietf.org/doc/html/rfc5280
 RFC 8446: The Transport Layer Security (TLS) Protocol Version 1.3. IETF Standards Track. https://datatracker.ietf.org/doc/html/rfc8446
 RFC 8555: Automatic Certificate Management Environment (ACME). IETF Standards Track. https://datatracker.ietf.org/doc/html/rfc8555
-RFC 6066: Transport Layer Security (TLS) Extensions: Extension Definitions (Server Name Indication). IETF Standards Track. https://datatracker.ietf.org/doc/html/rfc6066
+RFC 6066: Transport Layer Security (TLS) Extensions: Extension Definitions (<a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">Server Name Indication</a>). IETF Standards Track. https://datatracker.ietf.org/doc/html/rfc6066
 CA/Browser Forum: Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates. https://cabforum.org/baseline-requirements-documents/
 Payment Card Industry Data Security Standard (PCI-DSS): Requirements and Testing Procedures Version 4.0. PCI Security Standards Council. https://www.pcisecuritystandards.org/
 WhatPing Official Documentation & API Reference: Hosted agentless infrastructure and certificate monitoring. https://www.whatping.com/ | https://monitor.whatping.com/
@@ -482,3 +482,12 @@ Probe the Live Handshake, Not the File on Disk: Disk-bound scanners miss memory 
 Alert on the Renewal Boundary, Not the Expiry Boundary: For 90-day certificates renewing at Day 60, start your warning alerts at Day 30 remaining. Waiting until 7 days remaining means ignoring 23 days of silent ACME failures.
 Tier Your Escalations to Eliminate Alert Fatigue: Keep informational warnings in Jira and Slack backlogs. Reserve high-priority on-call paging strictly for the critical 7-day window when automated retries have definitively failed.
 Never Close an Incident Without External Verification: An engineer running systemctl reload is not verification. Incidents must only resolve when multi-region external synthetic probes confirm the new certificate serial number across all public edge nodes.
+
+### Related SSL Monitoring Guides
+
+* <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">SSL Certificate Monitoring: Catch Expiry Before Users Do</a>
+* <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">How to Monitor SSL Certificate Renewal Without Missing Let's Encrypt Cycles</a>
+* <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">Monitor HTTPS Certificate Expiry Across Apex, www, and API Hostnames</a>
+* <a href="/blog/hidden-causes-website-downtime-ping-tests-never-catch/" class="theme-backlink">Hidden Causes of Website Downtime</a>
+* <a href="/blog/website-uptime-monitoring-guide-2026/" class="theme-backlink">Website Uptime Monitoring Guide 2026</a>
+

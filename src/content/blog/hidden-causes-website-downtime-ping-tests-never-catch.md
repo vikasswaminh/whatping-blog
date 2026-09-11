@@ -152,7 +152,7 @@ Walk through how a silent failure becomes visible—or stays invisible.
 4.  If `days_remaining <= 30`, opens a warning incident while HTTP still works.
 5.  Team fixes <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">ACME renewal</a> before customers feel pain.
 
-**Path 3: DNS drift with a false-healthy ping**
+**Path 3: <a href="/blog/dns-change-detection-how-to-know-when-records-change/" class="theme-backlink">DNS drift</a> with a false-healthy ping**
 1.  A record for `pay.example.com` accidentally points to a staging IP.
 2.  Staging returns HTTP 200 with a login page.
 3.  Ping/HTTP monitors may still pass.
@@ -565,4 +565,13 @@ Start with one critical hostname’s certificate, your <a href="/blog/monitor-ht
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
   </a>
 </div>
- This highlights the importance of having a robust [website uptime monitoring](/blog/website-uptime-monitoring-guide-2026/) strategy. This highlights the importance of having a robust [multi-region uptime monitoring](/blog/multi-region-uptime-monitoring-location-impacts-reliability/) strategy.
+
+### Related Uptime Monitoring Guides
+
+* <a href="/blog/website-uptime-monitoring-guide-2026/" class="theme-backlink">Website Uptime Monitoring Guide 2026</a>
+* <a href="/blog/dns-change-detection-how-to-know-when-records-change/" class="theme-backlink">DNS Change Detection</a>
+* <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">SSL Certificate Monitoring</a>
+* <a href="/blog/uptime-monitoring-for-wordpress-shopify-webflow/" class="theme-backlink">Uptime Monitoring for WordPress, Shopify & Webflow</a>
+* <a href="/blog/multi-region-uptime-monitoring-location-impacts-reliability/" class="theme-backlink">Multi-Region Uptime Monitoring</a>
+* <a href="/blog/server-uptime-monitoring/" class="theme-backlink">Server Uptime Monitoring Best Practices</a>
+

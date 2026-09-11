@@ -15,7 +15,6 @@ pubDate: 2026-08-31
 
 ## Executive Summary
 
-This guide walks through what to monitor on each platform, why the generic "check if the homepage returns 200" approach fails on all three for different reasons, and how to configure real checks — DNS assertions, <a href="/blog/prevent-ssl-certificate-expiry-downtime/" class="theme-backlink">certificate expiry</a> tracking, keyword-based page validation, and heartbeat monitoring for scheduled tasks — that catch the failures specific to WordPress, Shopify, and Webflow before a customer does. This highlights the importance of having a robust [website uptime monitoring](/blog/website-uptime-monitoring-guide-2026/) strategy. For evaluating solutions, check out our comparison of [uptime monitoring tools](/blog/best-uptime-monitoring-tools/).
 
 ---
 
@@ -326,7 +325,7 @@ curl -s -X POST https://api.whatping.com/v1/monitors \
   -d "{\"name\":\"${CLIENT_DOMAIN}-cert\",\"type\":\"certificate\",\"target\":\"${CLIENT_DOMAIN}\"}"
 ```
 
-Every client gets certificate monitoring by default regardless of platform, since an expiring certificate is a universal failure mode, with platform-specific health or DNS checks layered on top.
+Every client gets <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing by default regardless of platform, since an expiring certificate is a universal failure mode, with platform-specific health or DNS checks layered on top.
 
 **Governance consideration for agencies specifically.** Client offboarding needs to remove monitors as reliably as onboarding creates them — an orphaned monitor for a site whose contract ended continues alerting a team that no longer has any relationship with the client, and eventually gets ignored, which trains the team to ignore alerts generally.
 
@@ -394,3 +393,12 @@ Answer: Yes, because the risk isn't limited to changes you make deliberately —
 WordPress, Shopify, and Webflow fail in different places because they're built differently — one is self-hosted software you're responsible for end to end, and the other two are fully managed platforms where your monitoring burden concentrates on the domain, certificate, and customization layers you still control. A monitoring setup that treats all three the same way, checking only the homepage for a 200 status code, will miss the checkout failure, the broken form, and the DNS misconfiguration that actually cost you customers — because none of those failures reliably touch the homepage at all.
 
 The fix isn't more monitoring in the generic sense; it's monitoring configured against each platform's specific failure surface: keyword assertions on transactional pages, DNS and certificate checks on custom domains, heartbeat monitoring for anything scheduled or asynchronous, and enough understanding of each platform's architecture to know which page actually reveals a problem before a customer does. Set that up once per platform, and the difference between a five-minute incident and a five-day one comes down to whether your monitor was watching the right endpoint.
+
+### Related Uptime Monitoring Guides
+
+* <a href="/blog/website-uptime-monitoring-guide-2026/" class="theme-backlink">Website Uptime Monitoring Guide 2026</a>
+* <a href="/blog/uptime-monitoring-for-ecommerce/" class="theme-backlink">E-Commerce Uptime Monitoring</a>
+* <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">SSL Certificate Monitoring</a>
+* <a href="/blog/dns-change-detection-how-to-know-when-records-change/" class="theme-backlink">DNS Change Detection</a>
+* <a href="/blog/uptime-monitoring-check-frequency-20s-1m-5m/" class="theme-backlink">Uptime Monitoring Check Frequency</a>
+
