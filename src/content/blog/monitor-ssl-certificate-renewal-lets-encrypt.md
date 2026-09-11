@@ -486,7 +486,7 @@ When a browser connects, it terminates TLS against the CDN edge. The CDN then in
 If your synthetic monitor only queries the public <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">apex domain</a>, it terminates TLS against the CDN edge, where certificates are often managed automatically by the CDN vendor with long lifespans. Meanwhile, the Let's Encrypt certificate running on your origin server might be expiring in 48 hours. If the origin certificate expires, the CDN edge displays an invalid certificate error to visitors.
 
 To monitor Let's Encrypt cycles properly behind a CDN, implement dual-target monitoring:
-- Target 1 (The Edge): Point a certificate monitor to your public domain on port 443 to audit the public-facing edge certificate.
+- Target 1 (The Edge): Point a <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a> to your public domain on port 443 to audit the public-facing edge certificate.
 - Target 2 (The Origin): Point a second certificate monitor to your direct origin hostname or origin IP with SNI.
 
 By monitoring the origin directly, you guarantee immediate visibility if Certbot or Nginx on your origin cluster fails its 60-day renewal cycle.

@@ -462,7 +462,7 @@ Cons: Multiplies active certificates, requiring an automated external monitor (l
 
 When selecting a monitoring strategy for multi-hostname architectures, teams typically evaluate four approaches: ad-hoc command-line scripts, open-source Prometheus blackbox exporters, generic website uptime monitors, and purpose-built external <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>s like WhatPing.
 
-| Feature / Capability | Ad-Hoc Bash/Python Scripts | Prometheus Blackbox Exporter | Generic Uptime Monitors | WhatPing External Certificate Monitor |
+| Feature / Capability | Ad-Hoc Bash/Python Scripts | Prometheus Blackbox Exporter | Generic Uptime Monitors | WhatPing External <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">Certificate Monitor</a> |
 | :--- | :--- | :--- | :--- | :--- |
 | **Explicit SNI Probing** | Manual implementation required | Configurable via module parameters | Often missing or poorly documented | Native, automatic per-FQDN SNI negotiation |
 | **Multi-Hostname Correlation** | None; manual script logic required | Requires building custom Grafana dashboards | Rare; alerts treated as isolated events | Correlated multi-domain views and grouped alerts |
@@ -514,7 +514,7 @@ By delegating certificate monitoring to WhatPing, you establish an independent s
 1. Does a wildcard certificate (*.example.com) automatically cover my apex domain (example.com)?
 No. Under RFC 6125 Section 6.4.3, wildcard certificates do not match the absence of a subdomain label. A wildcard certificate issued for *.example.com will secure www.example.com and api.example.com, but it will not secure the apex domain example.com. To secure both with a single certificate, the certificate must explicitly include both example.com and *.example.com in its Subject Alternative Name (SAN) extension.
 
-2. Can I get a wildcard certificate using Let's Encrypt's HTTP-01 challenge?
+2. Can I get a wildcard certificate using <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a>'s HTTP-01 challenge?
 No. Let’s Encrypt and the ACME specification (RFC 8555) mandate that wildcard certificates can only be issued using DNS-01 challenges. This requires your ACME client to programmatically create _acme-challenge.example.com TXT records via your DNS provider's API. If you do not have automated DNS API access, you must issue individual, dedicated certificates for each hostname using HTTP-01 challenges.
 
 3. Why did our API certificate expire when our web server configuration was never changed?

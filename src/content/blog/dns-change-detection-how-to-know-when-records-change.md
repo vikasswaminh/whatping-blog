@@ -396,7 +396,7 @@ The Risk: Generates frequent false-positive alerts whenever the DNS provider leg
 The Fix: Whitelist entire provider CIDR blocks or monitor the static CNAME steering pointers that route traffic to the dynamic edge pools.
 
 3. Treating TXT Records as Single-Value Fields
-The Mistake: Overwriting an apex TXT record set to publish a new domain verification token (e.g., for Google, Apple, or Let's Encrypt).
+The Mistake: Overwriting an apex TXT record set to publish a new domain verification token (e.g., for Google, Apple, or <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">Let's Encrypt</a>).
 The Risk: Destroys existing anti-spoofing policies (v=spf1) and DKIM keys, instantly causing outbound corporate emails to bounce or land in spam folders globally.
 The Fix: Treat the TXT RRset as a shared, multi-tenant resource. Always fetch existing records and append new entries rather than performing destructive full-record overwrites.
 

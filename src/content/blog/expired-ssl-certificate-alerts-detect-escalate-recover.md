@@ -120,7 +120,7 @@ The Handshake Sequence
 
 - TCP Three-Way Handshake: The external probe initiates a standard TCP SYN to the resolved IP address of the target hostname on port 443. Once the SYN-ACK and ACK exchange completes, a raw TCP transport socket is established.
 
-- TLS ClientHello with SNI Extension: The probe issues a TLS ClientHello message. Critically, this message must include the Server Name Indication (SNI) extension defined in RFC 6066. Without SNI, modern reverse proxies, CDNs, and ingress controllers hosting thousands of virtual hosts on a shared IP address will return the default fallback certificate, leading to false-positive expiration alerts.
+- TLS ClientHello with SNI Extension: The probe issues a TLS ClientHello message. Critically, this message must include the <a href="/blog/monitor-https-certificate-expiry-apex-www-api/" class="theme-backlink">Server Name Indication</a> (SNI) extension defined in RFC 6066. Without SNI, modern reverse proxies, CDNs, and ingress controllers hosting thousands of virtual hosts on a shared IP address will return the default fallback certificate, leading to false-positive expiration alerts.
 
 - ServerHello and Certificate Message: The target server processes the ClientHello, matches the requested SNI against its loaded virtual host configurations, and responds with:
 
@@ -133,7 +133,7 @@ Importantly, the probe does not need to complete the full application handshake 
 
 ## Core System Components in the Detection and Escalation Pipeline
 
-A resilient certificate monitoring infrastructure relies on distinct, specialized components working in concert:
+A resilient <a href="/blog/ssl-certificate-monitoring-catch-expiry-before-users/" class="theme-backlink">certificate monitor</a>ing infrastructure relies on distinct, specialized components working in concert:
 
 | Component Name | Primary Architectural Responsibility | Key Failure Modes Prevented |
 | :--- | :--- | :--- |
@@ -191,7 +191,7 @@ groups:
       - alert: SSLCertExpiring30Days
         expr: (probe_ssl_earliest_cert_expiry - time()) / 86400 <= 30
         labels: { severity: warning, tier: backlog }
-        annotations: { summary: "Cert on {{ $labels.instance }} expires in <30d. Check ACME renewal." }
+        annotations: { summary: "Cert on {{ $labels.instance }} expires in <30d. Check <a href="/blog/monitor-ssl-certificate-renewal-lets-encrypt/" class="theme-backlink">ACME renewal</a>." }
 
       - alert: SSLCertExpiring14Days
         expr: (probe_ssl_earliest_cert_expiry - time()) / 86400 <= 14

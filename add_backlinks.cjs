@@ -24,6 +24,7 @@ const links = [
   { slug: 'monitor-https-certificate-expiry-apex-www-api', title: 'Monitor HTTPS Certificate Expiry Apex www API', regex: /(apex (domain|hostname)|www.*api.*certificate|multi-hostname (ssl|tls)|sni probing|server name indication|wildcard.*apex|multi-domain ssl)/ig },
   { slug: 'expired-ssl-certificate-alerts-detect-escalate-recover', title: 'Expired SSL Certificate Alerts', regex: /(expired ssl certificate( alerts)?|ssl expiration monitoring|tls certificate alert|detect expired ssl|ssl incident escalation)/ig },
   { slug: 'dns-change-detection-how-to-know-when-records-change', title: 'DNS Change Detection', regex: /(dns change detection|detect unauthorized dns|dns drift|monitor dns changes|dns record monitoring|dangling cname|nameserver change alert)/ig },
+  { slug: 'mx-record-monitoring', title: 'MX Record Monitoring', regex: /(mx record monitoring|dns mx record monitoring|track mx record changes|alert when mx record changes|email delivery monitoring|mx priority monitoring)/ig },
 ];
 
 for (const file of files) {

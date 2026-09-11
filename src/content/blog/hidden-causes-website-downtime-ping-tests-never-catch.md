@@ -113,7 +113,7 @@ To catch hidden downtime, monitoring architecture must separate fast liveness fr
 Everything starts at the control plane (config and API), where monitors, thresholds, and alert channels are defined. From there, work splits into three lanes:
 
 *   **Fast probe lane (every 20 seconds to 5 minutes):** Runs <a href="/blog/how-uptime-monitoring-actually-works/" class="theme-backlink">active liveness</a> checks: HTTP/TCP/ICMP/UDP/gRPC/mail. This lane answers “is it reachable and responding right now?”
-*   **Scheduled lane (daily):** Runs slow integrity and continuity checks: TLS expiry, domain RDAP/WHOIS expiry, DNS drift, and SPF/DMARC health. This lane answers “will it still be trustworthy tomorrow?”
+*   **Scheduled lane (daily):** Runs slow integrity and continuity checks: TLS expiry, domain RDAP/WHOIS expiry, <a href="/blog/dns-change-detection-how-to-know-when-records-change/" class="theme-backlink">DNS drift</a>, and SPF/DMARC health. This lane answers “will it still be trustworthy tomorrow?”
 *   **Passive lane (heartbeat):** Waits for inbound success signals from cron jobs, workers, backups, and CI. This lane answers “did private work finish on schedule?”
 
 ### What happens after checks run
